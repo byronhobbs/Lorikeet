@@ -42,6 +42,8 @@ namespace Lorikeet {
         
         private DiagnosisNameDataTable tableDiagnosisName;
         
+        private GeocodeCacheDataTable tableGeocodeCache;
+        
         private GuestDataTable tableGuest;
         
         private LabelsDataTable tableLabels;
@@ -69,6 +71,16 @@ namespace Lorikeet {
         private SignInDataTable tableSignIn;
         
         private StaffDataTable tableStaff;
+        
+        private global::System.Data.DataRelation relationMember_Note;
+        
+        private global::System.Data.DataRelation relationMedication_Member;
+        
+        private global::System.Data.DataRelation relationDiagnosis_Member;
+        
+        private global::System.Data.DataRelation relationContact_Member;
+        
+        private global::System.Data.DataRelation relationDebitSystem_Member;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -124,6 +136,9 @@ namespace Lorikeet {
                 }
                 if ((ds.Tables["DiagnosisName"] != null)) {
                     base.Tables.Add(new DiagnosisNameDataTable(ds.Tables["DiagnosisName"]));
+                }
+                if ((ds.Tables["GeocodeCache"] != null)) {
+                    base.Tables.Add(new GeocodeCacheDataTable(ds.Tables["GeocodeCache"]));
                 }
                 if ((ds.Tables["Guest"] != null)) {
                     base.Tables.Add(new GuestDataTable(ds.Tables["Guest"]));
@@ -272,6 +287,16 @@ namespace Lorikeet {
         public DiagnosisNameDataTable DiagnosisName {
             get {
                 return this.tableDiagnosisName;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public GeocodeCacheDataTable GeocodeCache {
+            get {
+                return this.tableGeocodeCache;
             }
         }
         
@@ -509,6 +534,9 @@ namespace Lorikeet {
                 if ((ds.Tables["DiagnosisName"] != null)) {
                     base.Tables.Add(new DiagnosisNameDataTable(ds.Tables["DiagnosisName"]));
                 }
+                if ((ds.Tables["GeocodeCache"] != null)) {
+                    base.Tables.Add(new GeocodeCacheDataTable(ds.Tables["GeocodeCache"]));
+                }
                 if ((ds.Tables["Guest"] != null)) {
                     base.Tables.Add(new GuestDataTable(ds.Tables["Guest"]));
                 }
@@ -638,6 +666,12 @@ namespace Lorikeet {
                     this.tableDiagnosisName.InitVars();
                 }
             }
+            this.tableGeocodeCache = ((GeocodeCacheDataTable)(base.Tables["GeocodeCache"]));
+            if ((initTable == true)) {
+                if ((this.tableGeocodeCache != null)) {
+                    this.tableGeocodeCache.InitVars();
+                }
+            }
             this.tableGuest = ((GuestDataTable)(base.Tables["Guest"]));
             if ((initTable == true)) {
                 if ((this.tableGuest != null)) {
@@ -722,6 +756,11 @@ namespace Lorikeet {
                     this.tableStaff.InitVars();
                 }
             }
+            this.relationMember_Note = this.Relations["Member_Note"];
+            this.relationMedication_Member = this.Relations["Medication_Member"];
+            this.relationDiagnosis_Member = this.Relations["Diagnosis_Member"];
+            this.relationContact_Member = this.Relations["Contact_Member"];
+            this.relationDebitSystem_Member = this.Relations["DebitSystem_Member"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -750,6 +789,8 @@ namespace Lorikeet {
             base.Tables.Add(this.tableDiagnosis);
             this.tableDiagnosisName = new DiagnosisNameDataTable();
             base.Tables.Add(this.tableDiagnosisName);
+            this.tableGeocodeCache = new GeocodeCacheDataTable();
+            base.Tables.Add(this.tableGeocodeCache);
             this.tableGuest = new GuestDataTable();
             base.Tables.Add(this.tableGuest);
             this.tableLabels = new LabelsDataTable();
@@ -778,6 +819,26 @@ namespace Lorikeet {
             base.Tables.Add(this.tableSignIn);
             this.tableStaff = new StaffDataTable();
             base.Tables.Add(this.tableStaff);
+            this.relationMember_Note = new global::System.Data.DataRelation("Member_Note", new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableNote.MemberIDColumn}, false);
+            this.Relations.Add(this.relationMember_Note);
+            this.relationMedication_Member = new global::System.Data.DataRelation("Medication_Member", new global::System.Data.DataColumn[] {
+                        this.tableMedication.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, false);
+            this.Relations.Add(this.relationMedication_Member);
+            this.relationDiagnosis_Member = new global::System.Data.DataRelation("Diagnosis_Member", new global::System.Data.DataColumn[] {
+                        this.tableDiagnosis.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, false);
+            this.Relations.Add(this.relationDiagnosis_Member);
+            this.relationContact_Member = new global::System.Data.DataRelation("Contact_Member", new global::System.Data.DataColumn[] {
+                        this.tableContact.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, false);
+            this.Relations.Add(this.relationContact_Member);
+            this.relationDebitSystem_Member = new global::System.Data.DataRelation("DebitSystem_Member", new global::System.Data.DataColumn[] {
+                        this.tableDebitSystem.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, false);
+            this.Relations.Add(this.relationDebitSystem_Member);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -831,6 +892,12 @@ namespace Lorikeet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeDiagnosisName() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeGeocodeCache() {
             return false;
         }
         
@@ -999,6 +1066,9 @@ namespace Lorikeet {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void DiagnosisNameRowChangeEventHandler(object sender, DiagnosisNameRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void GeocodeCacheRowChangeEventHandler(object sender, GeocodeCacheRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void GuestRowChangeEventHandler(object sender, GuestRowChangeEvent e);
@@ -3952,6 +4022,309 @@ namespace Lorikeet {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class GeocodeCacheDataTable : global::System.Data.TypedTableBase<GeocodeCacheRow> {
+            
+            private global::System.Data.DataColumn columnGeocodeCacheID;
+            
+            private global::System.Data.DataColumn columnLatitude;
+            
+            private global::System.Data.DataColumn columnLongitude;
+            
+            private global::System.Data.DataColumn columnLocation;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheDataTable() {
+                this.TableName = "GeocodeCache";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal GeocodeCacheDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected GeocodeCacheDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GeocodeCacheIDColumn {
+                get {
+                    return this.columnGeocodeCacheID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LatitudeColumn {
+                get {
+                    return this.columnLatitude;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LongitudeColumn {
+                get {
+                    return this.columnLongitude;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LocationColumn {
+                get {
+                    return this.columnLocation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheRow this[int index] {
+                get {
+                    return ((GeocodeCacheRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GeocodeCacheRowChangeEventHandler GeocodeCacheRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GeocodeCacheRowChangeEventHandler GeocodeCacheRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GeocodeCacheRowChangeEventHandler GeocodeCacheRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event GeocodeCacheRowChangeEventHandler GeocodeCacheRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddGeocodeCacheRow(GeocodeCacheRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheRow AddGeocodeCacheRow(decimal Latitude, decimal Longitude, string Location) {
+                GeocodeCacheRow rowGeocodeCacheRow = ((GeocodeCacheRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Latitude,
+                        Longitude,
+                        Location};
+                rowGeocodeCacheRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGeocodeCacheRow);
+                return rowGeocodeCacheRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheRow FindByGeocodeCacheID(int GeocodeCacheID) {
+                return ((GeocodeCacheRow)(this.Rows.Find(new object[] {
+                            GeocodeCacheID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                GeocodeCacheDataTable cln = ((GeocodeCacheDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new GeocodeCacheDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnGeocodeCacheID = base.Columns["GeocodeCacheID"];
+                this.columnLatitude = base.Columns["Latitude"];
+                this.columnLongitude = base.Columns["Longitude"];
+                this.columnLocation = base.Columns["Location"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnGeocodeCacheID = new global::System.Data.DataColumn("GeocodeCacheID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGeocodeCacheID);
+                this.columnLatitude = new global::System.Data.DataColumn("Latitude", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLatitude);
+                this.columnLongitude = new global::System.Data.DataColumn("Longitude", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLongitude);
+                this.columnLocation = new global::System.Data.DataColumn("Location", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocation);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnGeocodeCacheID}, true));
+                this.columnGeocodeCacheID.AutoIncrement = true;
+                this.columnGeocodeCacheID.AutoIncrementSeed = -1;
+                this.columnGeocodeCacheID.AutoIncrementStep = -1;
+                this.columnGeocodeCacheID.AllowDBNull = false;
+                this.columnGeocodeCacheID.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheRow NewGeocodeCacheRow() {
+                return ((GeocodeCacheRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new GeocodeCacheRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(GeocodeCacheRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.GeocodeCacheRowChanged != null)) {
+                    this.GeocodeCacheRowChanged(this, new GeocodeCacheRowChangeEvent(((GeocodeCacheRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.GeocodeCacheRowChanging != null)) {
+                    this.GeocodeCacheRowChanging(this, new GeocodeCacheRowChangeEvent(((GeocodeCacheRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.GeocodeCacheRowDeleted != null)) {
+                    this.GeocodeCacheRowDeleted(this, new GeocodeCacheRowChangeEvent(((GeocodeCacheRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.GeocodeCacheRowDeleting != null)) {
+                    this.GeocodeCacheRowDeleting(this, new GeocodeCacheRowChangeEvent(((GeocodeCacheRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveGeocodeCacheRow(GeocodeCacheRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                LorikeetAppDataSet ds = new LorikeetAppDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "GeocodeCacheDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GuestDataTable : global::System.Data.TypedTableBase<GuestRow> {
             
             private global::System.Data.DataColumn columnGuestID;
@@ -6463,6 +6836,7 @@ namespace Lorikeet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public MemberRow AddMemberRow(
+                        MedicationRow parentMedicationRowByMedication_Member, 
                         bool Aboriginal, 
                         bool Agency, 
                         bool Archived, 
@@ -6516,6 +6890,9 @@ namespace Lorikeet {
                         Volunteering,
                         Working,
                         ReturnToSender};
+                if ((parentMedicationRowByMedication_Member != null)) {
+                    columnValuesArray[0] = parentMedicationRowByMedication_Member[2];
+                }
                 rowMemberRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMemberRow);
                 return rowMemberRow;
@@ -6630,9 +7007,6 @@ namespace Lorikeet {
                 base.Columns.Add(this.columnReturnToSender);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMemberID}, true));
-                this.columnMemberID.AutoIncrement = true;
-                this.columnMemberID.AutoIncrementSeed = -1;
-                this.columnMemberID.AutoIncrementStep = -1;
                 this.columnMemberID.AllowDBNull = false;
                 this.columnMemberID.Unique = true;
                 this.columnFirstName.AllowDBNull = false;
@@ -7191,15 +7565,18 @@ namespace Lorikeet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public NoteRow AddNoteRow(System.DateTime Date, bool Editable, int MemberID, string Notes, int StaffID) {
+            public NoteRow AddNoteRow(System.DateTime Date, bool Editable, MemberRow parentMemberRowByMember_Note, string Notes, int StaffID) {
                 NoteRow rowNoteRow = ((NoteRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Date,
                         Editable,
-                        MemberID,
+                        null,
                         Notes,
                         StaffID};
+                if ((parentMemberRowByMember_Note != null)) {
+                    columnValuesArray[3] = parentMemberRowByMember_Note[0];
+                }
                 rowNoteRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowNoteRow);
                 return rowNoteRow;
@@ -9571,6 +9948,17 @@ namespace Lorikeet {
             public void SetContactTypeNull() {
                 this[this.tableContact.ContactTypeColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MemberRow[] GetMemberRows() {
+                if ((this.Table.ChildRelations["Contact_Member"] == null)) {
+                    return new MemberRow[0];
+                }
+                else {
+                    return ((MemberRow[])(base.GetChildRows(this.Table.ChildRelations["Contact_Member"])));
+                }
+            }
         }
         
         /// <summary>
@@ -9742,6 +10130,17 @@ namespace Lorikeet {
             public void SetRunningTotalNull() {
                 this[this.tableDebitSystem.RunningTotalColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MemberRow[] GetMemberRows() {
+                if ((this.Table.ChildRelations["DebitSystem_Member"] == null)) {
+                    return new MemberRow[0];
+                }
+                else {
+                    return ((MemberRow[])(base.GetChildRows(this.Table.ChildRelations["DebitSystem_Member"])));
+                }
+            }
         }
         
         /// <summary>
@@ -9790,6 +10189,17 @@ namespace Lorikeet {
                     this[this.tableDiagnosis.MemberIDColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MemberRow[] GetMemberRows() {
+                if ((this.Table.ChildRelations["Diagnosis_Member"] == null)) {
+                    return new MemberRow[0];
+                }
+                else {
+                    return ((MemberRow[])(base.GetChildRows(this.Table.ChildRelations["Diagnosis_Member"])));
+                }
+            }
         }
         
         /// <summary>
@@ -9826,6 +10236,116 @@ namespace Lorikeet {
                 set {
                     this[this.tableDiagnosisName.DiagnosisNameColumn] = value;
                 }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class GeocodeCacheRow : global::System.Data.DataRow {
+            
+            private GeocodeCacheDataTable tableGeocodeCache;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal GeocodeCacheRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableGeocodeCache = ((GeocodeCacheDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int GeocodeCacheID {
+                get {
+                    return ((int)(this[this.tableGeocodeCache.GeocodeCacheIDColumn]));
+                }
+                set {
+                    this[this.tableGeocodeCache.GeocodeCacheIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Latitude {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGeocodeCache.LatitudeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Latitude\' in table \'GeocodeCache\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGeocodeCache.LatitudeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Longitude {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGeocodeCache.LongitudeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Longitude\' in table \'GeocodeCache\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGeocodeCache.LongitudeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Location {
+                get {
+                    try {
+                        return ((string)(this[this.tableGeocodeCache.LocationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Location\' in table \'GeocodeCache\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGeocodeCache.LocationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLatitudeNull() {
+                return this.IsNull(this.tableGeocodeCache.LatitudeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLatitudeNull() {
+                this[this.tableGeocodeCache.LatitudeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLongitudeNull() {
+                return this.IsNull(this.tableGeocodeCache.LongitudeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLongitudeNull() {
+                this[this.tableGeocodeCache.LongitudeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLocationNull() {
+                return this.IsNull(this.tableGeocodeCache.LocationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLocationNull() {
+                this[this.tableGeocodeCache.LocationColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10389,6 +10909,17 @@ namespace Lorikeet {
                     this[this.tableMedication.MemberIDColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MemberRow[] GetMemberRows() {
+                if ((this.Table.ChildRelations["Medication_Member"] == null)) {
+                    return new MemberRow[0];
+                }
+                else {
+                    return ((MemberRow[])(base.GetChildRows(this.Table.ChildRelations["Medication_Member"])));
+                }
+            }
         }
         
         /// <summary>
@@ -10845,6 +11376,50 @@ namespace Lorikeet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MedicationRow MedicationRow {
+                get {
+                    return ((MedicationRow)(this.GetParentRow(this.Table.ParentRelations["Medication_Member"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Medication_Member"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DiagnosisRow DiagnosisRow {
+                get {
+                    return ((DiagnosisRow)(this.GetParentRow(this.Table.ParentRelations["Diagnosis_Member"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Diagnosis_Member"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ContactRow ContactRow {
+                get {
+                    return ((ContactRow)(this.GetParentRow(this.Table.ParentRelations["Contact_Member"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Contact_Member"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DebitSystemRow DebitSystemRow {
+                get {
+                    return ((DebitSystemRow)(this.GetParentRow(this.Table.ParentRelations["DebitSystem_Member"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["DebitSystem_Member"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsAboriginalNull() {
                 return this.IsNull(this.tableMember.AboriginalColumn);
             }
@@ -11118,6 +11693,17 @@ namespace Lorikeet {
             public void SetReturnToSenderNull() {
                 this[this.tableMember.ReturnToSenderColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public NoteRow[] GetNoteRows() {
+                if ((this.Table.ChildRelations["Member_Note"] == null)) {
+                    return new NoteRow[0];
+                }
+                else {
+                    return ((NoteRow[])(base.GetChildRows(this.Table.ChildRelations["Member_Note"])));
+                }
+            }
         }
         
         /// <summary>
@@ -11270,6 +11856,17 @@ namespace Lorikeet {
                 }
                 set {
                     this[this.tableNote.StaffIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MemberRow MemberRow {
+                get {
+                    return ((MemberRow)(this.GetParentRow(this.Table.ParentRelations["Member_Note"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Member_Note"]);
                 }
             }
             
@@ -12104,6 +12701,40 @@ namespace Lorikeet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DiagnosisNameRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class GeocodeCacheRowChangeEvent : global::System.EventArgs {
+            
+            private GeocodeCacheRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheRowChangeEvent(GeocodeCacheRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public GeocodeCacheRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -16205,8 +16836,8 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Devart.Data.MySql.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        ContactID, ContactAddress, ContactName, ContactPhone, ContactType, " +
-                "MemberID\r\nFROM            Contact\r\nWHERE        (MemberID = :MemberID)";
+            this._commandCollection[1].CommandText = "SELECT ContactID, ContactAddress, ContactName, ContactPhone, ContactType, MemberI" +
+                "D FROM LorikeetApp.Contact WHERE (MemberID = :MemberID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Devart.Data.MySql.MySqlParameter param = new global::Devart.Data.MySql.MySqlParameter();
             param.ParameterName = "MemberID";
@@ -17934,6 +18565,524 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class GeocodeCacheTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::Devart.Data.MySql.MySqlDataAdapter _adapter;
+        
+        private global::Devart.Data.MySql.MySqlConnection _connection;
+        
+        private global::System.Data.Common.DbTransaction _transaction;
+        
+        private global::Devart.Data.MySql.MySqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public GeocodeCacheTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::Devart.Data.MySql.MySqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::Devart.Data.MySql.MySqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::Devart.Data.MySql.MySqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.Common.DbTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::Devart.Data.MySql.MySqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::Devart.Data.MySql.MySqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "GeocodeCache";
+            tableMapping.ColumnMappings.Add("GeocodeCacheID", "GeocodeCacheID");
+            tableMapping.ColumnMappings.Add("Latitude", "Latitude");
+            tableMapping.ColumnMappings.Add("Longitude", "Longitude");
+            tableMapping.ColumnMappings.Add("Location", "Location");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::Devart.Data.MySql.MySqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `LorikeetApp`.`GeocodeCache` WHERE ((`GeocodeCacheID` = :Original_GeocodeCacheID) AND ((:IsNull_Latitude = 1 AND `Latitude` IS NULL) OR (`Latitude` = :Original_Latitude)) AND ((:IsNull_Longitude = 1 AND `Longitude` IS NULL) OR (`Longitude` = :Original_Longitude)) AND ((:IsNull_Location = 1 AND `Location` IS NULL) OR (`Location` = :Original_Location)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::Devart.Data.MySql.MySqlParameter param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_GeocodeCacheID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "GeocodeCacheID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "IsNull_Latitude";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Latitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_Latitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Latitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "IsNull_Longitude";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Longitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_Longitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Longitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "IsNull_Location";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Location";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_Location";
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Location";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            this._adapter.InsertCommand = new global::Devart.Data.MySql.MySqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `LorikeetApp`.`GeocodeCache` (`Latitude`, `Longitude`, `Location`) VA" +
+                "LUES (:Latitude, :Longitude, :Location)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Latitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Latitude";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Longitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Longitude";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Location";
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Location";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::Devart.Data.MySql.MySqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `LorikeetApp`.`GeocodeCache` SET `Latitude` = :Latitude, `Longitude` = :Longitude, `Location` = :Location WHERE ((`GeocodeCacheID` = :Original_GeocodeCacheID) AND ((:IsNull_Latitude = 1 AND `Latitude` IS NULL) OR (`Latitude` = :Original_Latitude)) AND ((:IsNull_Longitude = 1 AND `Longitude` IS NULL) OR (`Longitude` = :Original_Longitude)) AND ((:IsNull_Location = 1 AND `Location` IS NULL) OR (`Location` = :Original_Location)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Latitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Latitude";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Longitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Longitude";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Location";
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Location";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_GeocodeCacheID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "GeocodeCacheID";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "IsNull_Latitude";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Latitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_Latitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Latitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "IsNull_Longitude";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Longitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_Longitude";
+            param.DbType = global::System.Data.DbType.Decimal;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Decimal;
+            param.IsNullable = true;
+            param.SourceColumn = "Longitude";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "IsNull_Location";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "Location";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "Original_Location";
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "Location";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::Devart.Data.MySql.MySqlConnection();
+            this._connection.ConnectionString = global::Lorikeet.Properties.Settings.Default.LorikeetAppConnectionString2;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::Devart.Data.MySql.MySqlCommand[1];
+            this._commandCollection[0] = new global::Devart.Data.MySql.MySqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT GeocodeCacheID, Latitude, Longitude, Location FROM LorikeetApp.GeocodeCach" +
+                "e";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(LorikeetAppDataSet.GeocodeCacheDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual LorikeetAppDataSet.GeocodeCacheDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            LorikeetAppDataSet.GeocodeCacheDataTable dataTable = new LorikeetAppDataSet.GeocodeCacheDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(LorikeetAppDataSet.GeocodeCacheDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(LorikeetAppDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "GeocodeCache");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_GeocodeCacheID, global::System.Nullable<decimal> Original_Latitude, global::System.Nullable<decimal> Original_Longitude, string Original_Location) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_GeocodeCacheID));
+            if ((Original_Latitude.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_Latitude.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Longitude.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_Longitude.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Location == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Location));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(global::System.Nullable<decimal> Latitude, global::System.Nullable<decimal> Longitude, string Location) {
+            if ((Latitude.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((decimal)(Latitude.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((Longitude.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(Longitude.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Location == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Location));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<decimal> Latitude, global::System.Nullable<decimal> Longitude, string Location, int Original_GeocodeCacheID, global::System.Nullable<decimal> Original_Latitude, global::System.Nullable<decimal> Original_Longitude, string Original_Location) {
+            if ((Latitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((decimal)(Latitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((Longitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(Longitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Location == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Location));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_GeocodeCacheID));
+            if ((Original_Latitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(Original_Latitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Longitude.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Original_Longitude.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Location == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Location));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class GuestTableAdapter : global::System.ComponentModel.Component {
         
         private global::Devart.Data.MySql.MySqlDataAdapter _adapter;
@@ -18651,10 +19800,10 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::Devart.Data.MySql.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM `Labels` WHERE (`LabelID` = :P1)";
+            this._commandCollection[1].CommandText = "DELETE FROM `LorikeetApp`.`Labels` WHERE (`LabelID` = :Original_LabelID) ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::Devart.Data.MySql.MySqlParameter param = new global::Devart.Data.MySql.MySqlParameter();
-            param.ParameterName = "P1";
+            param.ParameterName = "Original_LabelID";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
             param.IsNullable = true;
@@ -18930,9 +20079,9 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteQuery(int P1) {
+        public virtual int DeleteQuery(int Original_LabelID) {
             global::Devart.Data.MySql.MySqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(P1));
+            command.Parameters[0].Value = ((int)(Original_LabelID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21926,8 +23075,15 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::Devart.Data.MySql.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `LorikeetApp`.`Member` (`Aboriginal`, `Agency`, `Archived`, `BirthdayCard`, `Country`, `CountryOfOrigin`, `DateAltered`, `DateJoined`, `DateOfBirth`, `EmailAddress`, `FirstName`, `MobileNumber`, `PostCode`, `ReceiveByMail`, `ReceiveNewsletter`, `Sex`, `State`, `StreetAddress`, `Studying`, `Suburb`, `Surname`, `TelephoneNumber`, `Volunteering`, `Working`, `ReturnToSender`) VALUES (:Aboriginal, :Agency, :Archived, :BirthdayCard, :Country, :CountryOfOrigin, :DateAltered, :DateJoined, :DateOfBirth, :EmailAddress, :FirstName, :MobileNumber, :PostCode, :ReceiveByMail, :ReceiveNewsletter, :Sex, :State, :StreetAddress, :Studying, :Suburb, :Surname, :TelephoneNumber, :Volunteering, :Working, :ReturnToSender)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `LorikeetApp`.`Member` (`MemberID`, `Aboriginal`, `Agency`, `Archived`, `BirthdayCard`, `Country`, `CountryOfOrigin`, `DateAltered`, `DateJoined`, `DateOfBirth`, `EmailAddress`, `FirstName`, `MobileNumber`, `PostCode`, `ReceiveByMail`, `ReceiveNewsletter`, `Sex`, `State`, `StreetAddress`, `Studying`, `Suburb`, `Surname`, `TelephoneNumber`, `Volunteering`, `Working`, `ReturnToSender`) VALUES (:MemberID, :Aboriginal, :Agency, :Archived, :BirthdayCard, :Country, :CountryOfOrigin, :DateAltered, :DateJoined, :DateOfBirth, :EmailAddress, :FirstName, :MobileNumber, :PostCode, :ReceiveByMail, :ReceiveNewsletter, :Sex, :State, :StreetAddress, :Studying, :Suburb, :Surname, :TelephoneNumber, :Volunteering, :Working, :ReturnToSender)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "MemberID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "MemberID";
+            this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::Devart.Data.MySql.MySqlParameter();
             param.ParameterName = "Aboriginal";
             param.DbType = global::System.Data.DbType.Int16;
@@ -22094,46 +23250,54 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Devart.Data.MySql.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `LorikeetApp`.`Member` SET `Aboriginal` = :Aboriginal, `Agency` = :Agency," +
-                " `Archived` = :Archived, `BirthdayCard` = :BirthdayCard, `Country` = :Country, `" +
-                "CountryOfOrigin` = :CountryOfOrigin, `DateAltered` = :DateAltered, `DateJoined` " +
-                "= :DateJoined, `DateOfBirth` = :DateOfBirth, `EmailAddress` = :EmailAddress, `Fi" +
-                "rstName` = :FirstName, `MobileNumber` = :MobileNumber, `PostCode` = :PostCode, `" +
-                "ReceiveByMail` = :ReceiveByMail, `ReceiveNewsletter` = :ReceiveNewsletter, `Sex`" +
-                " = :Sex, `State` = :State, `StreetAddress` = :StreetAddress, `Studying` = :Study" +
-                "ing, `Suburb` = :Suburb, `Surname` = :Surname, `TelephoneNumber` = :TelephoneNum" +
-                "ber, `Volunteering` = :Volunteering, `Working` = :Working, `ReturnToSender` = :R" +
-                "eturnToSender WHERE ((`MemberID` = :Original_MemberID) AND ((:IsNull_Aboriginal " +
-                "= 1 AND `Aboriginal` IS NULL) OR (`Aboriginal` = :Original_Aboriginal)) AND ((:I" +
-                "sNull_Agency = 1 AND `Agency` IS NULL) OR (`Agency` = :Original_Agency)) AND ((:" +
-                "IsNull_Archived = 1 AND `Archived` IS NULL) OR (`Archived` = :Original_Archived)" +
-                ") AND ((:IsNull_BirthdayCard = 1 AND `BirthdayCard` IS NULL) OR (`BirthdayCard` " +
-                "= :Original_BirthdayCard)) AND ((:IsNull_Country = 1 AND `Country` IS NULL) OR (" +
-                "`Country` = :Original_Country)) AND ((:IsNull_CountryOfOrigin = 1 AND `CountryOf" +
-                "Origin` IS NULL) OR (`CountryOfOrigin` = :Original_CountryOfOrigin)) AND ((:IsNu" +
-                "ll_DateAltered = 1 AND `DateAltered` IS NULL) OR (`DateAltered` = :Original_Date" +
-                "Altered)) AND ((:IsNull_DateJoined = 1 AND `DateJoined` IS NULL) OR (`DateJoined" +
-                "` = :Original_DateJoined)) AND ((:IsNull_DateOfBirth = 1 AND `DateOfBirth` IS NU" +
-                "LL) OR (`DateOfBirth` = :Original_DateOfBirth)) AND ((:IsNull_EmailAddress = 1 A" +
-                "ND `EmailAddress` IS NULL) OR (`EmailAddress` = :Original_EmailAddress)) AND (`F" +
-                "irstName` = :Original_FirstName) AND ((:IsNull_MobileNumber = 1 AND `MobileNumbe" +
-                "r` IS NULL) OR (`MobileNumber` = :Original_MobileNumber)) AND ((:IsNull_PostCode" +
-                " = 1 AND `PostCode` IS NULL) OR (`PostCode` = :Original_PostCode)) AND ((:IsNull" +
-                "_ReceiveByMail = 1 AND `ReceiveByMail` IS NULL) OR (`ReceiveByMail` = :Original_" +
-                "ReceiveByMail)) AND ((:IsNull_ReceiveNewsletter = 1 AND `ReceiveNewsletter` IS N" +
-                "ULL) OR (`ReceiveNewsletter` = :Original_ReceiveNewsletter)) AND ((:IsNull_Sex =" +
-                " 1 AND `Sex` IS NULL) OR (`Sex` = :Original_Sex)) AND ((:IsNull_State = 1 AND `S" +
-                "tate` IS NULL) OR (`State` = :Original_State)) AND ((:IsNull_StreetAddress = 1 A" +
-                "ND `StreetAddress` IS NULL) OR (`StreetAddress` = :Original_StreetAddress)) AND " +
-                "((:IsNull_Studying = 1 AND `Studying` IS NULL) OR (`Studying` = :Original_Studyi" +
-                "ng)) AND ((:IsNull_Suburb = 1 AND `Suburb` IS NULL) OR (`Suburb` = :Original_Sub" +
-                "urb)) AND (`Surname` = :Original_Surname) AND ((:IsNull_TelephoneNumber = 1 AND " +
-                "`TelephoneNumber` IS NULL) OR (`TelephoneNumber` = :Original_TelephoneNumber)) A" +
-                "ND ((:IsNull_Volunteering = 1 AND `Volunteering` IS NULL) OR (`Volunteering` = :" +
-                "Original_Volunteering)) AND ((:IsNull_Working = 1 AND `Working` IS NULL) OR (`Wo" +
-                "rking` = :Original_Working)) AND ((:IsNull_ReturnToSender = 1 AND `ReturnToSende" +
-                "r` IS NULL) OR (`ReturnToSender` = :Original_ReturnToSender)))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `LorikeetApp`.`Member` SET `MemberID` = :MemberID, `Aboriginal` = :Aborigi" +
+                "nal, `Agency` = :Agency, `Archived` = :Archived, `BirthdayCard` = :BirthdayCard," +
+                " `Country` = :Country, `CountryOfOrigin` = :CountryOfOrigin, `DateAltered` = :Da" +
+                "teAltered, `DateJoined` = :DateJoined, `DateOfBirth` = :DateOfBirth, `EmailAddre" +
+                "ss` = :EmailAddress, `FirstName` = :FirstName, `MobileNumber` = :MobileNumber, `" +
+                "PostCode` = :PostCode, `ReceiveByMail` = :ReceiveByMail, `ReceiveNewsletter` = :" +
+                "ReceiveNewsletter, `Sex` = :Sex, `State` = :State, `StreetAddress` = :StreetAddr" +
+                "ess, `Studying` = :Studying, `Suburb` = :Suburb, `Surname` = :Surname, `Telephon" +
+                "eNumber` = :TelephoneNumber, `Volunteering` = :Volunteering, `Working` = :Workin" +
+                "g, `ReturnToSender` = :ReturnToSender WHERE ((`MemberID` = :Original_MemberID) A" +
+                "ND ((:IsNull_Aboriginal = 1 AND `Aboriginal` IS NULL) OR (`Aboriginal` = :Origin" +
+                "al_Aboriginal)) AND ((:IsNull_Agency = 1 AND `Agency` IS NULL) OR (`Agency` = :O" +
+                "riginal_Agency)) AND ((:IsNull_Archived = 1 AND `Archived` IS NULL) OR (`Archive" +
+                "d` = :Original_Archived)) AND ((:IsNull_BirthdayCard = 1 AND `BirthdayCard` IS N" +
+                "ULL) OR (`BirthdayCard` = :Original_BirthdayCard)) AND ((:IsNull_Country = 1 AND" +
+                " `Country` IS NULL) OR (`Country` = :Original_Country)) AND ((:IsNull_CountryOfO" +
+                "rigin = 1 AND `CountryOfOrigin` IS NULL) OR (`CountryOfOrigin` = :Original_Count" +
+                "ryOfOrigin)) AND ((:IsNull_DateAltered = 1 AND `DateAltered` IS NULL) OR (`DateA" +
+                "ltered` = :Original_DateAltered)) AND ((:IsNull_DateJoined = 1 AND `DateJoined` " +
+                "IS NULL) OR (`DateJoined` = :Original_DateJoined)) AND ((:IsNull_DateOfBirth = 1" +
+                " AND `DateOfBirth` IS NULL) OR (`DateOfBirth` = :Original_DateOfBirth)) AND ((:I" +
+                "sNull_EmailAddress = 1 AND `EmailAddress` IS NULL) OR (`EmailAddress` = :Origina" +
+                "l_EmailAddress)) AND (`FirstName` = :Original_FirstName) AND ((:IsNull_MobileNum" +
+                "ber = 1 AND `MobileNumber` IS NULL) OR (`MobileNumber` = :Original_MobileNumber)" +
+                ") AND ((:IsNull_PostCode = 1 AND `PostCode` IS NULL) OR (`PostCode` = :Original_" +
+                "PostCode)) AND ((:IsNull_ReceiveByMail = 1 AND `ReceiveByMail` IS NULL) OR (`Rec" +
+                "eiveByMail` = :Original_ReceiveByMail)) AND ((:IsNull_ReceiveNewsletter = 1 AND " +
+                "`ReceiveNewsletter` IS NULL) OR (`ReceiveNewsletter` = :Original_ReceiveNewslett" +
+                "er)) AND ((:IsNull_Sex = 1 AND `Sex` IS NULL) OR (`Sex` = :Original_Sex)) AND ((" +
+                ":IsNull_State = 1 AND `State` IS NULL) OR (`State` = :Original_State)) AND ((:Is" +
+                "Null_StreetAddress = 1 AND `StreetAddress` IS NULL) OR (`StreetAddress` = :Origi" +
+                "nal_StreetAddress)) AND ((:IsNull_Studying = 1 AND `Studying` IS NULL) OR (`Stud" +
+                "ying` = :Original_Studying)) AND ((:IsNull_Suburb = 1 AND `Suburb` IS NULL) OR (" +
+                "`Suburb` = :Original_Suburb)) AND (`Surname` = :Original_Surname) AND ((:IsNull_" +
+                "TelephoneNumber = 1 AND `TelephoneNumber` IS NULL) OR (`TelephoneNumber` = :Orig" +
+                "inal_TelephoneNumber)) AND ((:IsNull_Volunteering = 1 AND `Volunteering` IS NULL" +
+                ") OR (`Volunteering` = :Original_Volunteering)) AND ((:IsNull_Working = 1 AND `W" +
+                "orking` IS NULL) OR (`Working` = :Original_Working)) AND ((:IsNull_ReturnToSende" +
+                "r = 1 AND `ReturnToSender` IS NULL) OR (`ReturnToSender` = :Original_ReturnToSen" +
+                "der)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "MemberID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "MemberID";
+            this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Devart.Data.MySql.MySqlParameter();
             param.ParameterName = "Aboriginal";
             param.DbType = global::System.Data.DbType.Int16;
@@ -23060,6 +24224,7 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
+                    int MemberID, 
                     global::System.Nullable<short> Aboriginal, 
                     global::System.Nullable<short> Agency, 
                     global::System.Nullable<short> Archived, 
@@ -23085,155 +24250,156 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     global::System.Nullable<short> Volunteering, 
                     global::System.Nullable<short> Working, 
                     global::System.Nullable<short> ReturnToSender) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(MemberID));
             if ((Aboriginal.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((short)(Aboriginal.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((Agency.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((short)(Agency.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((short)(Aboriginal.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Archived.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((short)(Archived.Value));
+            if ((Agency.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((short)(Agency.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((BirthdayCard.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((short)(BirthdayCard.Value));
+            if ((Archived.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((short)(Archived.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((Country == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((BirthdayCard.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((short)(BirthdayCard.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Country));
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((CountryOfOrigin == null)) {
+            if ((Country == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CountryOfOrigin));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Country));
             }
-            if ((DateAltered.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(DateAltered.Value));
-            }
-            else {
+            if ((CountryOfOrigin == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((DateJoined.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(DateJoined.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(CountryOfOrigin));
+            }
+            if ((DateAltered.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(DateAltered.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((DateOfBirth.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(DateOfBirth.Value));
+            if ((DateJoined.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(DateJoined.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((EmailAddress == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((DateOfBirth.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(DateOfBirth.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(EmailAddress));
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((EmailAddress == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(EmailAddress));
             }
             if ((FirstName == null)) {
                 throw new global::System.ArgumentNullException("FirstName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(FirstName));
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(FirstName));
             }
             if ((MobileNumber == null)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(MobileNumber));
-            }
-            if ((PostCode == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(PostCode));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(MobileNumber));
             }
-            if ((ReceiveByMail.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((short)(ReceiveByMail.Value));
-            }
-            else {
+            if ((PostCode == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((ReceiveNewsletter.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((short)(ReceiveNewsletter.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(PostCode));
+            }
+            if ((ReceiveByMail.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((short)(ReceiveByMail.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Sex.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((short)(Sex.Value));
+            if ((ReceiveNewsletter.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((short)(ReceiveNewsletter.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((State == null)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
+            if ((Sex.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((short)(Sex.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(State));
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((StreetAddress == null)) {
+            if ((State == null)) {
                 this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(StreetAddress));
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(State));
             }
-            if ((Studying.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((short)(Studying.Value));
-            }
-            else {
+            if ((StreetAddress == null)) {
                 this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((Suburb == null)) {
-                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(StreetAddress));
+            }
+            if ((Studying.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((short)(Studying.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(Suburb));
+                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((Suburb == null)) {
+                this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(Suburb));
             }
             if ((Surname == null)) {
                 throw new global::System.ArgumentNullException("Surname");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(Surname));
+                this.Adapter.InsertCommand.Parameters[21].Value = ((string)(Surname));
             }
             if ((TelephoneNumber == null)) {
-                this.Adapter.InsertCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[21].Value = ((string)(TelephoneNumber));
-            }
-            if ((Volunteering.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[22].Value = ((short)(Volunteering.Value));
-            }
-            else {
                 this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
-            if ((Working.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[23].Value = ((short)(Working.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[22].Value = ((string)(TelephoneNumber));
+            }
+            if ((Volunteering.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[23].Value = ((short)(Volunteering.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            if ((ReturnToSender.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[24].Value = ((short)(ReturnToSender.Value));
+            if ((Working.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[24].Value = ((short)(Working.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((ReturnToSender.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[25].Value = ((short)(ReturnToSender.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -23247,6 +24413,427 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int MemberID, 
+                    global::System.Nullable<short> Aboriginal, 
+                    global::System.Nullable<short> Agency, 
+                    global::System.Nullable<short> Archived, 
+                    global::System.Nullable<short> BirthdayCard, 
+                    string Country, 
+                    string CountryOfOrigin, 
+                    global::System.Nullable<global::System.DateTime> DateAltered, 
+                    global::System.Nullable<global::System.DateTime> DateJoined, 
+                    global::System.Nullable<global::System.DateTime> DateOfBirth, 
+                    string EmailAddress, 
+                    string FirstName, 
+                    string MobileNumber, 
+                    string PostCode, 
+                    global::System.Nullable<short> ReceiveByMail, 
+                    global::System.Nullable<short> ReceiveNewsletter, 
+                    global::System.Nullable<short> Sex, 
+                    string State, 
+                    string StreetAddress, 
+                    global::System.Nullable<short> Studying, 
+                    string Suburb, 
+                    string Surname, 
+                    string TelephoneNumber, 
+                    global::System.Nullable<short> Volunteering, 
+                    global::System.Nullable<short> Working, 
+                    global::System.Nullable<short> ReturnToSender, 
+                    int Original_MemberID, 
+                    global::System.Nullable<short> Original_Aboriginal, 
+                    global::System.Nullable<short> Original_Agency, 
+                    global::System.Nullable<short> Original_Archived, 
+                    global::System.Nullable<short> Original_BirthdayCard, 
+                    string Original_Country, 
+                    string Original_CountryOfOrigin, 
+                    global::System.Nullable<global::System.DateTime> Original_DateAltered, 
+                    global::System.Nullable<global::System.DateTime> Original_DateJoined, 
+                    global::System.Nullable<global::System.DateTime> Original_DateOfBirth, 
+                    string Original_EmailAddress, 
+                    string Original_FirstName, 
+                    string Original_MobileNumber, 
+                    string Original_PostCode, 
+                    global::System.Nullable<short> Original_ReceiveByMail, 
+                    global::System.Nullable<short> Original_ReceiveNewsletter, 
+                    global::System.Nullable<short> Original_Sex, 
+                    string Original_State, 
+                    string Original_StreetAddress, 
+                    global::System.Nullable<short> Original_Studying, 
+                    string Original_Suburb, 
+                    string Original_Surname, 
+                    string Original_TelephoneNumber, 
+                    global::System.Nullable<short> Original_Volunteering, 
+                    global::System.Nullable<short> Original_Working, 
+                    global::System.Nullable<short> Original_ReturnToSender) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(MemberID));
+            if ((Aboriginal.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((short)(Aboriginal.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Agency.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(Agency.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Archived.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(Archived.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((BirthdayCard.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((short)(BirthdayCard.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Country == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Country));
+            }
+            if ((CountryOfOrigin == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(CountryOfOrigin));
+            }
+            if ((DateAltered.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(DateAltered.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((DateJoined.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(DateJoined.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((DateOfBirth.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(DateOfBirth.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((EmailAddress == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(EmailAddress));
+            }
+            if ((FirstName == null)) {
+                throw new global::System.ArgumentNullException("FirstName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(FirstName));
+            }
+            if ((MobileNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(MobileNumber));
+            }
+            if ((PostCode == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(PostCode));
+            }
+            if ((ReceiveByMail.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((short)(ReceiveByMail.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((ReceiveNewsletter.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((short)(ReceiveNewsletter.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((Sex.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((short)(Sex.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((State == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(State));
+            }
+            if ((StreetAddress == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(StreetAddress));
+            }
+            if ((Studying.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((short)(Studying.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((Suburb == null)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Suburb));
+            }
+            if ((Surname == null)) {
+                throw new global::System.ArgumentNullException("Surname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Surname));
+            }
+            if ((TelephoneNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(TelephoneNumber));
+            }
+            if ((Volunteering.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((short)(Volunteering.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            if ((Working.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((short)(Working.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((ReturnToSender.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((short)(ReturnToSender.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(Original_MemberID));
+            if ((Original_Aboriginal.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((short)(Original_Aboriginal.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Agency.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((short)(Original_Agency.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Archived.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((short)(Original_Archived.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
+            }
+            if ((Original_BirthdayCard.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((short)(Original_BirthdayCard.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Country == null)) {
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((string)(Original_Country));
+            }
+            if ((Original_CountryOfOrigin == null)) {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_CountryOfOrigin));
+            }
+            if ((Original_DateAltered.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((System.DateTime)(Original_DateAltered.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
+            }
+            if ((Original_DateJoined.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((System.DateTime)(Original_DateJoined.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
+            }
+            if ((Original_DateOfBirth.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((System.DateTime)(Original_DateOfBirth.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[44].Value = global::System.DBNull.Value;
+            }
+            if ((Original_EmailAddress == null)) {
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[46].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(Original_EmailAddress));
+            }
+            if ((Original_FirstName == null)) {
+                throw new global::System.ArgumentNullException("Original_FirstName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((string)(Original_FirstName));
+            }
+            if ((Original_MobileNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((string)(Original_MobileNumber));
+            }
+            if ((Original_PostCode == null)) {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[51].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((string)(Original_PostCode));
+            }
+            if ((Original_ReceiveByMail.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((short)(Original_ReceiveByMail.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
+            }
+            if ((Original_ReceiveNewsletter.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((short)(Original_ReceiveNewsletter.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Sex.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((short)(Original_Sex.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
+            }
+            if ((Original_State == null)) {
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[59].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((string)(Original_State));
+            }
+            if ((Original_StreetAddress == null)) {
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[61].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((string)(Original_StreetAddress));
+            }
+            if ((Original_Studying.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((short)(Original_Studying.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[63].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Suburb == null)) {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[65].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((string)(Original_Suburb));
+            }
+            if ((Original_Surname == null)) {
+                throw new global::System.ArgumentNullException("Original_Surname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((string)(Original_Surname));
+            }
+            if ((Original_TelephoneNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[68].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((string)(Original_TelephoneNumber));
+            }
+            if ((Original_Volunteering.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((short)(Original_Volunteering.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[70].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Working.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((short)(Original_Working.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[72].Value = global::System.DBNull.Value;
+            }
+            if ((Original_ReturnToSender.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((short)(Original_ReturnToSender.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[74].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
         }
@@ -23307,367 +24894,7 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     global::System.Nullable<short> Original_Volunteering, 
                     global::System.Nullable<short> Original_Working, 
                     global::System.Nullable<short> Original_ReturnToSender) {
-            if ((Aboriginal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((short)(Aboriginal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((Agency.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((short)(Agency.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Archived.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(Archived.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((BirthdayCard.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(BirthdayCard.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Country == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Country));
-            }
-            if ((CountryOfOrigin == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CountryOfOrigin));
-            }
-            if ((DateAltered.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(DateAltered.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((DateJoined.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(DateJoined.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((DateOfBirth.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(DateOfBirth.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((EmailAddress == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(EmailAddress));
-            }
-            if ((FirstName == null)) {
-                throw new global::System.ArgumentNullException("FirstName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(FirstName));
-            }
-            if ((MobileNumber == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(MobileNumber));
-            }
-            if ((PostCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(PostCode));
-            }
-            if ((ReceiveByMail.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((short)(ReceiveByMail.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((ReceiveNewsletter.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((short)(ReceiveNewsletter.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((Sex.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((short)(Sex.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((State == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(State));
-            }
-            if ((StreetAddress == null)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(StreetAddress));
-            }
-            if ((Studying.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((short)(Studying.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            if ((Suburb == null)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Suburb));
-            }
-            if ((Surname == null)) {
-                throw new global::System.ArgumentNullException("Surname");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Surname));
-            }
-            if ((TelephoneNumber == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(TelephoneNumber));
-            }
-            if ((Volunteering.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((short)(Volunteering.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            if ((Working.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((short)(Working.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((ReturnToSender.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((short)(ReturnToSender.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_MemberID));
-            if ((Original_Aboriginal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((short)(Original_Aboriginal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Agency.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((short)(Original_Agency.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Archived.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((short)(Original_Archived.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            if ((Original_BirthdayCard.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((short)(Original_BirthdayCard.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Country == null)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(Original_Country));
-            }
-            if ((Original_CountryOfOrigin == null)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((string)(Original_CountryOfOrigin));
-            }
-            if ((Original_DateAltered.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((System.DateTime)(Original_DateAltered.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DateJoined.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((System.DateTime)(Original_DateJoined.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[41].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DateOfBirth.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((System.DateTime)(Original_DateOfBirth.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[43].Value = global::System.DBNull.Value;
-            }
-            if ((Original_EmailAddress == null)) {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[45].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((string)(Original_EmailAddress));
-            }
-            if ((Original_FirstName == null)) {
-                throw new global::System.ArgumentNullException("Original_FirstName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(Original_FirstName));
-            }
-            if ((Original_MobileNumber == null)) {
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[48].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(Original_MobileNumber));
-            }
-            if ((Original_PostCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[50].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(Original_PostCode));
-            }
-            if ((Original_ReceiveByMail.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((short)(Original_ReceiveByMail.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[52].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ReceiveNewsletter.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((short)(Original_ReceiveNewsletter.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[54].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Sex.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((short)(Original_Sex.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[56].Value = global::System.DBNull.Value;
-            }
-            if ((Original_State == null)) {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[58].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((string)(Original_State));
-            }
-            if ((Original_StreetAddress == null)) {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[60].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((string)(Original_StreetAddress));
-            }
-            if ((Original_Studying.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((short)(Original_Studying.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[62].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Suburb == null)) {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[64].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((string)(Original_Suburb));
-            }
-            if ((Original_Surname == null)) {
-                throw new global::System.ArgumentNullException("Original_Surname");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((string)(Original_Surname));
-            }
-            if ((Original_TelephoneNumber == null)) {
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[67].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((string)(Original_TelephoneNumber));
-            }
-            if ((Original_Volunteering.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[69].Value = ((short)(Original_Volunteering.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[69].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Working.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[71].Value = ((short)(Original_Working.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[71].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ReturnToSender.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((short)(Original_ReturnToSender.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[73].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
+            return this.Update(Original_MemberID, Aboriginal, Agency, Archived, BirthdayCard, Country, CountryOfOrigin, DateAltered, DateJoined, DateOfBirth, EmailAddress, FirstName, MobileNumber, PostCode, ReceiveByMail, ReceiveNewsletter, Sex, State, StreetAddress, Studying, Suburb, Surname, TelephoneNumber, Volunteering, Working, ReturnToSender, Original_MemberID, Original_Aboriginal, Original_Agency, Original_Archived, Original_BirthdayCard, Original_Country, Original_CountryOfOrigin, Original_DateAltered, Original_DateJoined, Original_DateOfBirth, Original_EmailAddress, Original_FirstName, Original_MobileNumber, Original_PostCode, Original_ReceiveByMail, Original_ReceiveNewsletter, Original_Sex, Original_State, Original_StreetAddress, Original_Studying, Original_Suburb, Original_Surname, Original_TelephoneNumber, Original_Volunteering, Original_Working, Original_ReturnToSender);
         }
     }
     
@@ -26911,91 +28138,6 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
     }
     
     /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.IDbCommand[] _commandCollection;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.IDbCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.IDbCommand[1];
-            this._commandCollection[0] = new global::Devart.Data.MySql.MySqlCommand();
-            ((global::Devart.Data.MySql.MySqlCommand)(this._commandCollection[0])).Connection = new global::Devart.Data.MySql.MySqlConnection(global::Lorikeet.Properties.Settings.Default.LorikeetAppConnectionString2);
-            ((global::Devart.Data.MySql.MySqlCommand)(this._commandCollection[0])).CommandText = "LorikeetApp.TruncateTime";
-            ((global::Devart.Data.MySql.MySqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.StoredProcedure;
-            global::Devart.Data.MySql.MySqlParameter param = new global::Devart.Data.MySql.MySqlParameter();
-            param.ParameterName = "(Result)";
-            param.DbType = global::System.Data.DbType.Date;
-            param.MySqlType = global::Devart.Data.MySql.MySqlType.Date;
-            param.Size = 2147483647;
-            param.IsNullable = true;
-            param.SourceColumn = null;
-            ((global::Devart.Data.MySql.MySqlCommand)(this._commandCollection[0])).Parameters.Add(param);
-            param = new global::Devart.Data.MySql.MySqlParameter();
-            param.ParameterName = "Param1";
-            param.DbType = global::System.Data.DbType.DateTime;
-            param.MySqlType = global::Devart.Data.MySql.MySqlType.DateTime;
-            param.Size = 2147483647;
-            param.IsNullable = true;
-            param.SourceColumn = null;
-            ((global::Devart.Data.MySql.MySqlCommand)(this._commandCollection[0])).Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int TruncateTime(global::System.Nullable<global::System.DateTime> @__Result_, global::System.Nullable<global::System.DateTime> Param1) {
-            global::Devart.Data.MySql.MySqlCommand command = ((global::Devart.Data.MySql.MySqlCommand)(this.CommandCollection[0]));
-            if ((@__Result_.HasValue == true)) {
-                command.Parameters[0].Value = ((System.DateTime)(@__Result_.Value));
-            }
-            else {
-                command.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((Param1.HasValue == true)) {
-                command.Parameters[1].Value = ((System.DateTime)(Param1.Value));
-            }
-            else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
-    }
-    
-    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -27024,6 +28166,8 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
         private DiagnosisTableAdapter _diagnosisTableAdapter;
         
         private DiagnosisNameTableAdapter _diagnosisNameTableAdapter;
+        
+        private GeocodeCacheTableAdapter _geocodeCacheTableAdapter;
         
         private GuestTableAdapter _guestTableAdapter;
         
@@ -27191,6 +28335,20 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             }
             set {
                 this._diagnosisNameTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public GeocodeCacheTableAdapter GeocodeCacheTableAdapter {
+            get {
+                return this._geocodeCacheTableAdapter;
+            }
+            set {
+                this._geocodeCacheTableAdapter = value;
             }
         }
         
@@ -27445,6 +28603,10 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                             && (this._diagnosisNameTableAdapter.Connection != null))) {
                     return this._diagnosisNameTableAdapter.Connection;
                 }
+                if (((this._geocodeCacheTableAdapter != null) 
+                            && (this._geocodeCacheTableAdapter.Connection != null))) {
+                    return this._geocodeCacheTableAdapter.Connection;
+                }
                 if (((this._guestTableAdapter != null) 
                             && (this._guestTableAdapter.Connection != null))) {
                     return this._guestTableAdapter.Connection;
@@ -27541,6 +28703,9 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                 if ((this._diagnosisNameTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._geocodeCacheTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._guestTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -27594,6 +28759,51 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(LorikeetAppDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._contactTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Contact.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._contactTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._debitSystemTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.DebitSystem.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._debitSystemTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._diagnosisTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Diagnosis.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._diagnosisTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._medicationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Medication.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._medicationTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._memberTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Member.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._memberTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._appointmentMemberTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.AppointmentMember.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -27639,30 +28849,12 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._memberTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Member.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._memberTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._medicationNameTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.MedicationName.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._medicationNameTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._medicationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Medication.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._medicationTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -27684,21 +28876,21 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._labelsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Labels.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._labelsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._signInTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.SignIn.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._signInTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._logTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Log.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._logTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -27711,39 +28903,21 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._geocodeCacheTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GeocodeCache.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._geocodeCacheTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._diagnosisNameTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.DiagnosisName.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._diagnosisNameTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._diagnosisTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Diagnosis.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._diagnosisTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._debitSystemTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.DebitSystem.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._debitSystemTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._contactTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Contact.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._contactTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -27783,12 +28957,12 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._labelsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Labels.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._logTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Log.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._labelsTableAdapter.Update(updatedRows));
+                    result = (result + this._logTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -27811,6 +28985,46 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(LorikeetAppDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._contactTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Contact.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._contactTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._debitSystemTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.DebitSystem.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._debitSystemTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._diagnosisTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Diagnosis.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._diagnosisTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._medicationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Medication.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._medicationTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._memberTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Member.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._memberTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._appointmentMemberTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.AppointmentMember.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -27851,27 +29065,11 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._memberTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Member.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._memberTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._medicationNameTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.MedicationName.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._medicationNameTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._medicationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Medication.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._medicationTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -27891,19 +29089,19 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._labelsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Labels.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._labelsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._signInTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.SignIn.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._signInTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._logTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Log.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._logTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -27915,35 +29113,19 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._geocodeCacheTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GeocodeCache.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._geocodeCacheTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._diagnosisNameTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.DiagnosisName.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._diagnosisNameTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._diagnosisTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Diagnosis.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._diagnosisTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._debitSystemTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.DebitSystem.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._debitSystemTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._contactTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Contact.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._contactTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -27979,11 +29161,11 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._labelsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Labels.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._logTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Log.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._labelsTableAdapter.Update(addedRows));
+                    result = (result + this._logTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -28013,11 +29195,11 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._labelsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Labels.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._logTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Log.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._labelsTableAdapter.Update(deletedRows));
+                    result = (result + this._logTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28053,35 +29235,19 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._contactTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Contact.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._contactTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._debitSystemTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.DebitSystem.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._debitSystemTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._diagnosisTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Diagnosis.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._diagnosisTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._diagnosisNameTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.DiagnosisName.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._diagnosisNameTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._geocodeCacheTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GeocodeCache.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._geocodeCacheTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28093,19 +29259,19 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._logTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Log.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._logTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._signInTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.SignIn.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._signInTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._labelsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Labels.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._labelsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28125,27 +29291,11 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._medicationTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Medication.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._medicationTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._medicationNameTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.MedicationName.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._medicationNameTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._memberTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Member.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._memberTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28186,6 +29336,46 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._appointmentMemberTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._memberTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Member.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._memberTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._medicationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Medication.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._medicationTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._diagnosisTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Diagnosis.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._diagnosisTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._debitSystemTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.DebitSystem.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._debitSystemTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._contactTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Contact.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._contactTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28270,6 +29460,11 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             }
             if (((this._diagnosisNameTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._diagnosisNameTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._geocodeCacheTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._geocodeCacheTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -28454,6 +29649,15 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     if (this._diagnosisNameTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._diagnosisNameTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._diagnosisNameTableAdapter.Adapter);
+                    }
+                }
+                if ((this._geocodeCacheTableAdapter != null)) {
+                    revertConnections.Add(this._geocodeCacheTableAdapter, this._geocodeCacheTableAdapter.Connection);
+                    this._geocodeCacheTableAdapter.Connection = ((global::Devart.Data.MySql.MySqlConnection)(workConnection));
+                    this._geocodeCacheTableAdapter.Transaction = ((global::System.Data.Common.DbTransaction)(workTransaction));
+                    if (this._geocodeCacheTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._geocodeCacheTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._geocodeCacheTableAdapter.Adapter);
                     }
                 }
                 if ((this._guestTableAdapter != null)) {
@@ -28675,6 +29879,10 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                 if ((this._diagnosisNameTableAdapter != null)) {
                     this._diagnosisNameTableAdapter.Connection = ((global::Devart.Data.MySql.MySqlConnection)(revertConnections[this._diagnosisNameTableAdapter]));
                     this._diagnosisNameTableAdapter.Transaction = null;
+                }
+                if ((this._geocodeCacheTableAdapter != null)) {
+                    this._geocodeCacheTableAdapter.Connection = ((global::Devart.Data.MySql.MySqlConnection)(revertConnections[this._geocodeCacheTableAdapter]));
+                    this._geocodeCacheTableAdapter.Transaction = null;
                 }
                 if ((this._guestTableAdapter != null)) {
                     this._guestTableAdapter.Connection = ((global::Devart.Data.MySql.MySqlConnection)(revertConnections[this._guestTableAdapter]));

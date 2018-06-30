@@ -27,7 +27,7 @@ namespace Lorikeet
         private Timer timer1 = new Timer();
 
         public FormNewMemberWizard(int staffID)
-        {
+        { 
             InitializeComponent();
 
             this.staffID = staffID;

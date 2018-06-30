@@ -106,7 +106,6 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNotesID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMemberIDNotes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDate1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -148,7 +147,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).BeginInit();
             this.gridSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
@@ -258,7 +256,6 @@
             this.gridView4,
             this.gridView5,
             this.gridView1,
-            this.gridView6,
             this.gridView2});
             this.gridControl1.Load += new System.EventHandler(this.gridControl1_Load);
             this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click_1);
@@ -802,11 +799,6 @@
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             this.ribbonPageGroup8.Text = "Add / Edit Logins";
             // 
-            // gridView6
-            // 
-            this.gridView6.GridControl = this.gridControl1;
-            this.gridView6.Name = "gridView6";
-            // 
             // colNotesID
             // 
             this.colNotesID.FieldName = "NotesID";
@@ -1046,7 +1038,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).EndInit();
             this.gridSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
@@ -1121,7 +1112,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
         private DevExpress.XtraGrid.Columns.GridColumn colContactID;
         private DevExpress.XtraGrid.Columns.GridColumn colMemberIDContact;
         private DevExpress.XtraGrid.Columns.GridColumn colContactType;
