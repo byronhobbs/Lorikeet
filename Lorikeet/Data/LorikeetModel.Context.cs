@@ -48,5 +48,6 @@ namespace Lorikeet.Data
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<SignIn> SignIns { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
+        public virtual DbSet<GeocodeCache> GeocodeCaches { get; set; }
     }
 }

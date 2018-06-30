@@ -38,6 +38,7 @@
         <AssociationConnector Association="LorikeetAppModel.FK_Medication_Member" ManuallyRouted="false" />
         <AssociationConnector Association="LorikeetAppModel.FK_Picture_Member" ManuallyRouted="false" />
         <AssociationConnector Association="LorikeetAppModel.FK_SignIn_Member" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LorikeetAppModel.GeocodeCache" Width="1.5" PointX="8.5" PointY="12.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

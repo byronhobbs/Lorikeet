@@ -37,27 +37,52 @@ namespace Lorikeet
                                                   where m.CountryOfOrigin == name.CountryOfOrigin
                                                   select m).Count();
 
-                            var request = new GeocodingRequest
-                            {
-                                Key = MiscStuff.googleApiKey,
-                                Address = name.CountryOfOrigin
-                            };
+                            var geocodeCache = (from g in context.GeocodeCaches
+                                                where g.Location == name.CountryOfOrigin
+                                                select g).FirstOrDefault();
 
-                            var result = GoogleMaps.Geocode.Query(request);
-
-                            if (result.Status == Status.Ok)
+                            if (geocodeCache == null)
                             {
-                                var geocodeResult = result.Results.FirstOrDefault();
-                                if (geocodeResult != null)
+
+                                var request = new GeocodingRequest
                                 {
-                                    GeoPoint location = new GeoPoint(geocodeResult.Geometry.Location.Latitude, geocodeResult.Geometry.Location.Longitude);
+                                    Key = MiscStuff.googleApiKey,
+                                    Address = name.CountryOfOrigin
+                                };
 
-                                    informationLayer1.Data.Items.Add(new MapCallout()
+                                var result = GoogleMaps.Geocode.Query(request);
+
+                                if (result.Status == Status.Ok)
+                                {
+                                    var geocodeResult = result.Results.FirstOrDefault();
+                                    if (geocodeResult != null)
                                     {
-                                        Location = location,
-                                        Text = name.CountryOfOrigin + " - Count: " + countOfMapName
-                                    });
+                                        var geocodeToAdd = new GeocodeCache();
+                                        geocodeToAdd.Location = name.CountryOfOrigin;
+                                        geocodeToAdd.Latitude = (decimal)geocodeResult.Geometry.Location.Latitude;
+                                        geocodeToAdd.Longitude = (decimal)geocodeResult.Geometry.Location.Longitude;
+                                        context.GeocodeCaches.Add(geocodeToAdd);
+                                        context.SaveChanges();
+
+                                        GeoPoint location = new GeoPoint(geocodeResult.Geometry.Location.Latitude, geocodeResult.Geometry.Location.Longitude);
+
+                                        informationLayer1.Data.Items.Add(new MapCallout()
+                                        {
+                                            Location = location,
+                                            Text = name.CountryOfOrigin + " - Count: " + countOfMapName
+                                        });
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                GeoPoint location = new GeoPoint((long)geocodeCache.Latitude, (long)geocodeCache.Longitude);
+
+                                informationLayer1.Data.Items.Add(new MapCallout()
+                                {
+                                    Location = location,
+                                    Text = name.CountryOfOrigin + " - Count: " + countOfMapName
+                                });
                             }
                         }
                     }

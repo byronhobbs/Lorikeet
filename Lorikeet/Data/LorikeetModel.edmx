@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LorikeetAppModel.Store" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 8.0.11" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LorikeetAppModel.Store" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 8.0.11" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AppointmentMember">
           <Key>
             <PropertyRef Name="MemberActivityID" />
@@ -97,6 +97,15 @@
           </Key>
           <Property Name="DiagnosisNameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DiagnosisName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeocodeCache">
+          <Key>
+            <PropertyRef Name="GeocodeCache" />
+          </Key>
+          <Property Name="GeocodeCache" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Precision="15" Scale="10" />
+          <Property Name="Longitude" Type="decimal" Precision="15" Scale="10" />
+          <Property Name="Location" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Guest">
           <Key>
@@ -375,6 +384,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="TruncateTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="LorikeetApp" ReturnType="date">
+          <Parameter Name="Param1" Type="datetime" Mode="In" />
+        </Function>
         <EntityContainer Name="LorikeetAppModelStoreContainer">
           <EntitySet Name="AppointmentMember" EntityType="Self.AppointmentMember" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="LorikeetApp" store:Type="Tables" />
@@ -385,6 +397,7 @@
           <EntitySet Name="DebitSystem" EntityType="Self.DebitSystem" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="Diagnosis" EntityType="Self.Diagnosis" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="DiagnosisName" EntityType="Self.DiagnosisName" Schema="LorikeetApp" store:Type="Tables" />
+          <EntitySet Name="GeocodeCache" EntityType="Self.GeocodeCache" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="Guest" EntityType="Self.Guest" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="Labels" EntityType="Self.Labels" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="LorikeetApp" store:Type="Tables" />
@@ -440,8 +453,7 @@
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LorikeetAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -899,7 +911,17 @@
             <End Role="Member" EntitySet="Members" />
             <End Role="SignIn" EntitySet="SignIns" />
           </AssociationSet>
+          <EntitySet Name="GeocodeCaches" EntityType="LorikeetAppModel.GeocodeCache" />
         </EntityContainer>
+        <EntityType Name="GeocodeCache">
+          <Key>
+            <PropertyRef Name="GeocodeCache1" />
+          </Key>
+          <Property Name="GeocodeCache1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Latitude" Type="Decimal" Precision="15" Scale="10" />
+          <Property Name="Longitude" Type="Decimal" Precision="15" Scale="10" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1176,6 +1198,16 @@
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeocodeCaches">
+            <EntityTypeMapping TypeName="LorikeetAppModel.GeocodeCache">
+              <MappingFragment StoreEntitySet="GeocodeCache">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="GeocodeCache1" ColumnName="GeocodeCache" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

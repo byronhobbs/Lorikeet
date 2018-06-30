@@ -239,6 +239,9 @@
     <Compile Include="Data\DiagnosisName.cs">
       <DependentUpon>LorikeetModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\GeocodeCache.cs">
+      <DependentUpon>LorikeetModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Guest.cs">
       <DependentUpon>LorikeetModel.tt</DependentUpon>
     </Compile>
