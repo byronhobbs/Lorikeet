@@ -64,7 +64,7 @@ namespace Lorikeet
                 comboBoxAccess.Items.Add("10");
                 comboBoxAccess.Items.Add("8");
             }
-            if (access == 8)
+            if (access >= 8)
             {
                 comboBoxAccess.Items.Add("6");
             }
@@ -76,6 +76,8 @@ namespace Lorikeet
             {
                 using (var context = new LorikeetAppEntities())
                 {
+                    listBoxUsers.Items.Clear();
+
                     var usernames = (from log in context.Logins
                                      join staff in context.Staffs on log.LoginID equals staff.LoginID
                                      select new { staff, log }).ToList();
@@ -186,42 +188,51 @@ namespace Lorikeet
                         {
                             if (textBoxEnterPass.Text.Equals(textBoxReEnterPass.Text))
                             {
-                                using (var context = new LorikeetAppEntities())
+                                if (textBoxPIN.Text.Count() == 4)
                                 {
-                                    var checkIfUserExists = (from log in context.Logins
-                                                             join staff in context.Staffs on log.LoginID equals staff.LoginID
-                                                             where staff.StaffName == textBoxUserName.Text && log.LoginName == textBoxLoginName.Text
-                                                             select new { staff, log }).DefaultIfEmpty();
-
-                                    if (checkIfUserExists == null)
+                                    using (var context = new LorikeetAppEntities())
                                     {
-                                        var loginToAdd = new Login();
-                                        loginToAdd.Access = int.Parse(comboBoxAccess.Text);
-                                        loginToAdd.LoginName = textBoxLoginName.Text;
-                                        loginToAdd.LoginPass = textBoxEnterPass.Text;
-                                        loginToAdd.Pin = int.Parse(textBoxPIN.Text);
-                                        context.Logins.Add(loginToAdd);
-                                        context.SaveChanges();
+                                        var checkIfUserExists = (from log in context.Logins
+                                                                 join staff in context.Staffs on log.LoginID equals staff.LoginID
+                                                                 where staff.StaffName == textBoxUserName.Text && log.LoginName == textBoxLoginName.Text
+                                                                 select new { staff, log }).FirstOrDefault();
 
-                                        var idForStaffToAdd = context.Logins.LastOrDefault();
-
-                                        if (idForStaffToAdd != null)
+                                        if (checkIfUserExists == null)
                                         {
-                                            var staffToAdd = new Staff();
-                                            staffToAdd.StaffName = textBoxUserName.Text;
-                                            staffToAdd.LoginID = idForStaffToAdd.LoginID;
-
-                                            context.Staffs.Add(staffToAdd);
+                                            var loginToAdd = new Login();
+                                            loginToAdd.Access = int.Parse(comboBoxAccess.Text);
+                                            loginToAdd.LoginName = textBoxLoginName.Text;
+                                            loginToAdd.LoginPass = textBoxEnterPass.Text;
+                                            loginToAdd.Pin = int.Parse(textBoxPIN.Text);
+                                            context.Logins.Add(loginToAdd);
                                             context.SaveChanges();
+
+                                            var idForStaffToAdd = context.Logins.ToList().Last();
+
+                                            if (idForStaffToAdd != null)
+                                            {
+                                                var staffToAdd = new Staff();
+                                                staffToAdd.StaffName = textBoxUserName.Text;
+                                                staffToAdd.LoginID = idForStaffToAdd.LoginID;
+
+                                                context.Staffs.Add(staffToAdd);
+                                                context.SaveChanges();
+                                            }
+
+                                            ResetForm();
+                                            RefreshUserListBox();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Username and/or Login name is already taken");
+                                            return;
                                         }
 
-                                        ResetForm();
                                     }
-                                    else
-                                    {
-                                        MessageBox.Show("Username and/or Login name is already taken");
-                                        return;
-                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("PIM Must be 4 characters");
                                 }
                             }
                             else
@@ -312,6 +323,16 @@ namespace Lorikeet
         private void bbiCancel_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ResetForm();
+        }
+
+        private void textBoxPIN_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FormAddEditLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

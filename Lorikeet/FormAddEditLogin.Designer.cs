@@ -286,6 +286,7 @@
             this.textBoxPIN.Name = "textBoxPIN";
             this.textBoxPIN.Size = new System.Drawing.Size(103, 21);
             this.textBoxPIN.TabIndex = 11;
+            this.textBoxPIN.TextChanged += new System.EventHandler(this.textBoxPIN_TextChanged);
             // 
             // label5
             // 
@@ -393,6 +394,7 @@
             this.Ribbon = this.mainRibbonControl;
             this.Text = "Add / Edit Users";
             this.Load += new System.EventHandler(this.FormAddEditLogin_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormAddEditLogin_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epPasswordNotValid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epPasswordValid)).EndInit();
