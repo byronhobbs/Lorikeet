@@ -14,7 +14,7 @@ namespace Lorikeet.Data
     
     public partial class GeocodeCache
     {
-        public int GeocodeCache1 { get; set; }
+        public int GeocodeCacheID { get; set; }
         public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }
         public string Location { get; set; }

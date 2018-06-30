@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LorikeetAppModel.Store" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 8.0.11" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LorikeetAppModel.Store" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 8.0.11" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AppointmentMember">
           <Key>
             <PropertyRef Name="MemberActivityID" />
@@ -100,9 +100,9 @@
         </EntityType>
         <EntityType Name="GeocodeCache">
           <Key>
-            <PropertyRef Name="GeocodeCache" />
+            <PropertyRef Name="GeocodeCacheID" />
           </Key>
-          <Property Name="GeocodeCache" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GeocodeCacheID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Latitude" Type="decimal" Precision="15" Scale="10" />
           <Property Name="Longitude" Type="decimal" Precision="15" Scale="10" />
           <Property Name="Location" Type="varchar" MaxLength="255" />
@@ -177,7 +177,7 @@
           <Key>
             <PropertyRef Name="MemberID" />
           </Key>
-          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="Aboriginal" Type="boolean" />
           <Property Name="Agency" Type="boolean" />
           <Property Name="Archived" Type="boolean" />
@@ -384,9 +384,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="TruncateTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="LorikeetApp" ReturnType="date">
-          <Parameter Name="Param1" Type="datetime" Mode="In" />
-        </Function>
         <EntityContainer Name="LorikeetAppModelStoreContainer">
           <EntitySet Name="AppointmentMember" EntityType="Self.AppointmentMember" Schema="LorikeetApp" store:Type="Tables" />
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="LorikeetApp" store:Type="Tables" />
@@ -453,7 +450,8 @@
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LorikeetAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -554,6 +552,15 @@
           <Property Name="DiagnosisNameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiagnosisName1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="GeocodeCache">
+          <Key>
+            <PropertyRef Name="GeocodeCacheID" />
+          </Key>
+          <Property Name="GeocodeCacheID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Latitude" Type="Decimal" Precision="15" Scale="10" />
+          <Property Name="Longitude" Type="Decimal" Precision="15" Scale="10" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Guest">
           <Key>
             <PropertyRef Name="GuestID" />
@@ -628,7 +635,7 @@
           <Key>
             <PropertyRef Name="MemberID" />
           </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="Aboriginal" Type="Boolean" />
           <Property Name="Agency" Type="Boolean" />
           <Property Name="Archived" Type="Boolean" />
@@ -857,6 +864,7 @@
           <EntitySet Name="DebitSystems" EntityType="Self.DebitSystem" />
           <EntitySet Name="Diagnosis" EntityType="Self.Diagnosi" />
           <EntitySet Name="DiagnosisNames" EntityType="Self.DiagnosisName" />
+          <EntitySet Name="GeocodeCaches" EntityType="Self.GeocodeCache" />
           <EntitySet Name="Guests" EntityType="Self.Guest" />
           <EntitySet Name="Labels" EntityType="Self.Label" />
           <EntitySet Name="Logs" EntityType="Self.Log" />
@@ -911,17 +919,7 @@
             <End Role="Member" EntitySet="Members" />
             <End Role="SignIn" EntitySet="SignIns" />
           </AssociationSet>
-          <EntitySet Name="GeocodeCaches" EntityType="LorikeetAppModel.GeocodeCache" />
         </EntityContainer>
-        <EntityType Name="GeocodeCache">
-          <Key>
-            <PropertyRef Name="GeocodeCache1" />
-          </Key>
-          <Property Name="GeocodeCache1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Latitude" Type="Decimal" Precision="15" Scale="10" />
-          <Property Name="Longitude" Type="Decimal" Precision="15" Scale="10" />
-          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1027,6 +1025,16 @@
               <MappingFragment StoreEntitySet="DiagnosisName">
                 <ScalarProperty Name="DiagnosisNameID" ColumnName="DiagnosisNameID" />
                 <ScalarProperty Name="DiagnosisName1" ColumnName="DiagnosisName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeocodeCaches">
+            <EntityTypeMapping TypeName="LorikeetAppModel.GeocodeCache">
+              <MappingFragment StoreEntitySet="GeocodeCache">
+                <ScalarProperty Name="GeocodeCacheID" ColumnName="GeocodeCacheID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1201,16 +1209,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GeocodeCaches">
-            <EntityTypeMapping TypeName="LorikeetAppModel.GeocodeCache">
-              <MappingFragment StoreEntitySet="GeocodeCache">
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="GeocodeCache1" ColumnName="GeocodeCache" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1229,7 +1227,6 @@
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\Devart SSDLToMySql.tt" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

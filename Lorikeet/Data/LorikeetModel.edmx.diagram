@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d4d0ac8f2db74b049e5f7ee206ecb690" Name="Diagram1">
+      <Diagram DiagramId="9b02d505cced47308f1623a6f3e4f9f5" Name="Diagram1">
         <EntityTypeShape EntityType="LorikeetAppModel.AppointmentMember" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Appointment" Width="1.5" PointX="8.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.AppointmentsNumber" Width="1.5" PointX="2.75" PointY="10.125" IsExpanded="true" />
@@ -14,18 +14,19 @@
         <EntityTypeShape EntityType="LorikeetAppModel.DebitSystem" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Diagnosi" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.DiagnosisName" Width="1.5" PointX="10.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.GeocodeCache" Width="1.5" PointX="10.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Guest" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="LorikeetAppModel.Label" Width="1.5" PointX="10.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LorikeetAppModel.Log" Width="1.5" PointX="10.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.Label" Width="1.5" PointX="10.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.Log" Width="1.5" PointX="12.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Login" Width="1.5" PointX="1.5" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Lunch" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Medication" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LorikeetAppModel.MedicationName" Width="1.5" PointX="12.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.MedicationName" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Member" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LorikeetAppModel.Menu" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LorikeetAppModel.Note" Width="1.5" PointX="5.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.Menu" Width="1.5" PointX="5.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.Note" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Picture" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LorikeetAppModel.Resource" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LorikeetAppModel.Resource" Width="1.5" PointX="7.75" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.SignIn" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LorikeetAppModel.Staff" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="LorikeetAppModel.FK_Contact_Member" ManuallyRouted="false" />
@@ -38,7 +39,6 @@
         <AssociationConnector Association="LorikeetAppModel.FK_Medication_Member" ManuallyRouted="false" />
         <AssociationConnector Association="LorikeetAppModel.FK_Picture_Member" ManuallyRouted="false" />
         <AssociationConnector Association="LorikeetAppModel.FK_SignIn_Member" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LorikeetAppModel.GeocodeCache" Width="1.5" PointX="8.5" PointY="12.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

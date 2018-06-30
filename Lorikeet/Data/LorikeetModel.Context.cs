@@ -34,6 +34,7 @@ namespace Lorikeet.Data
         public virtual DbSet<DebitSystem> DebitSystems { get; set; }
         public virtual DbSet<Diagnosi> Diagnosis { get; set; }
         public virtual DbSet<DiagnosisName> DiagnosisNames { get; set; }
+        public virtual DbSet<GeocodeCache> GeocodeCaches { get; set; }
         public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<Label> Labels { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
@@ -48,6 +49,5 @@ namespace Lorikeet.Data
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<SignIn> SignIns { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
-        public virtual DbSet<GeocodeCache> GeocodeCaches { get; set; }
     }
 }
