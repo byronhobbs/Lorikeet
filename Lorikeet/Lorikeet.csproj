@@ -501,6 +501,9 @@
     <Compile Include="ImageHelper.cs" />
     <Compile Include="Interfaces\IViewingForm.cs" />
     <Compile Include="Logging.cs" />
+    <Compile Include="LorikeetAppDataSet.cs">
+      <DependentUpon>LorikeetAppDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LorikeetAppDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

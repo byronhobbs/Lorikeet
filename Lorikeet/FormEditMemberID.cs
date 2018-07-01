@@ -10,7 +10,7 @@ namespace Lorikeet
     {
         private int memberID = -1;
         private int staffID = -1;
-        public int newMemberID { get; set; }
+        public int newMemberID { get; private set; }
 
         private bool hasToChangeMemberID = false;
 
@@ -24,6 +24,7 @@ namespace Lorikeet
             bbiChange.Enabled = false;
             textBoxNewID.Focus();
             textBoxOriginalID.Text = "" + memberID;
+            newMemberID = -1;
         }
 
         private void FormEditMemberID_Load(object sender, EventArgs e)

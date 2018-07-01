@@ -48,7 +48,10 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.lorikeetAppDataSet1 = new Lorikeet.LorikeetAppDataSet();
+            this.memberTableAdapter1 = new Lorikeet.LorikeetAppDataSetTableAdapters.MemberTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lorikeetAppDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -199,6 +202,15 @@
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
             // 
+            // lorikeetAppDataSet1
+            // 
+            this.lorikeetAppDataSet1.DataSetName = "LorikeetAppDataSet";
+            this.lorikeetAppDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // memberTableAdapter1
+            // 
+            this.memberTableAdapter1.ClearBeforeFill = true;
+            // 
             // FormEditMemberID
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
@@ -213,7 +225,6 @@
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormEditMemberID";
             this.Ribbon = this.ribbonControl1;
@@ -221,6 +232,7 @@
             this.Text = "Change Member ID";
             this.Load += new System.EventHandler(this.FormEditMemberID_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lorikeetAppDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,5 +258,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiCheck;
         private DevExpress.XtraBars.BarButtonItem bbiChange;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private LorikeetAppDataSet lorikeetAppDataSet1;
+        private LorikeetAppDataSetTableAdapters.MemberTableAdapter memberTableAdapter1;
     }
 }

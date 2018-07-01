@@ -89,7 +89,7 @@ namespace Lorikeet
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
             Thread broadcastThread = new Thread(() =>
             {
                 Thread.Sleep(2500);

@@ -34,8 +34,9 @@
             DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode4 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode5 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewNotes = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colContactID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMemberIDContact = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colContactType = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,7 +46,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.memberBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lorikeetAppDataSet = new Lorikeet.LorikeetAppDataSet();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewContacts = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDebitID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMemberIDDebitCredit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,17 +55,18 @@
             this.colDetails = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStaffID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRunningTotal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewDebitsCredits = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMedicationID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMemberIDMedication = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMedicationNameID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMedicationName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewMedication = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDiagnosisName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiagnosisID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMemberIDDiagnosis = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDiagnosisNameID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewDiagnosis = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewMember = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMemberID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFirstName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -137,14 +139,15 @@
             this.diagnosisTableAdapter = new Lorikeet.LorikeetAppDataSetTableAdapters.DiagnosisTableAdapter();
             this.noteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.noteTableAdapter = new Lorikeet.LorikeetAppDataSetTableAdapters.NoteTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memberBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lorikeetAppDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewContacts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDebitsCredits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMedication)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDiagnosis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMember)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).BeginInit();
@@ -167,24 +170,23 @@
             // 
             splashScreenManager1.ClosingDelay = 400;
             // 
-            // gridView2
+            // gridViewNotes
             // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewNotes.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colContactID,
             this.colMemberIDContact,
             this.colContactType,
             this.colContactName,
             this.colContactAddress,
             this.colContactPhone});
-            this.gridView2.GridControl = this.gridControl1;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.ViewCaption = "Contacts";
-            this.gridView2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView2_MouseDown);
-            this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
+            this.gridViewNotes.GridControl = this.gridControl1;
+            this.gridViewNotes.Name = "gridViewNotes";
+            this.gridViewNotes.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewNotes.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewNotes.OptionsBehavior.Editable = false;
+            this.gridViewNotes.ViewCaption = "Notes";
+            this.gridViewNotes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView2_MouseDown);
+            this.gridViewNotes.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
             // colContactID
             // 
@@ -232,31 +234,35 @@
             // 
             this.gridControl1.DataSource = this.memberBindingSource;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.gridView2;
-            gridLevelNode1.RelationName = "FK_Contact_Member";
-            gridLevelNode2.LevelTemplate = this.gridView3;
-            gridLevelNode2.RelationName = "FK_DebitSystem_Member";
-            gridLevelNode3.LevelTemplate = this.gridView4;
-            gridLevelNode3.RelationName = "FK_Medication_Member";
-            gridLevelNode4.LevelTemplate = this.gridView5;
-            gridLevelNode4.RelationName = "FK_Diagnosis_Member";
+            gridLevelNode1.LevelTemplate = this.gridViewNotes;
+            gridLevelNode1.RelationName = "Member_Note";
+            gridLevelNode2.LevelTemplate = this.gridViewContacts;
+            gridLevelNode2.RelationName = "Contact_Member";
+            gridLevelNode3.LevelTemplate = this.gridViewDebitsCredits;
+            gridLevelNode3.RelationName = "DebitSystem_Member";
+            gridLevelNode4.LevelTemplate = this.gridViewMedication;
+            gridLevelNode4.RelationName = "Medication_Member";
+            gridLevelNode5.LevelTemplate = this.gridViewDiagnosis;
+            gridLevelNode5.RelationName = "Diagnosis_Member";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1,
             gridLevelNode2,
             gridLevelNode3,
-            gridLevelNode4});
+            gridLevelNode4,
+            gridLevelNode5});
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.MainView = this.gridViewMember;
             this.gridControl1.MenuManager = this.ribbonControl1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(1340, 482);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView3,
-            this.gridView4,
-            this.gridView5,
-            this.gridView1,
-            this.gridView2});
+            this.gridViewContacts,
+            this.gridViewDebitsCredits,
+            this.gridViewMedication,
+            this.gridViewDiagnosis,
+            this.gridViewMember,
+            this.gridViewNotes});
             this.gridControl1.Load += new System.EventHandler(this.gridControl1_Load);
             this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click_1);
             this.gridControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gridControl1_MouseUp);
@@ -269,11 +275,12 @@
             // lorikeetAppDataSet
             // 
             this.lorikeetAppDataSet.DataSetName = "LorikeetAppDataSet";
+            this.lorikeetAppDataSet.EnforceConstraints = false;
             this.lorikeetAppDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // gridView3
+            // gridViewContacts
             // 
-            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewContacts.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDebitID,
             this.colMemberIDDebitCredit,
             this.colDate,
@@ -282,16 +289,16 @@
             this.colDetails,
             this.colStaffID,
             this.colRunningTotal});
-            this.gridView3.GridControl = this.gridControl1;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView3.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView3.OptionsBehavior.Editable = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            this.gridView3.ViewCaption = "Credits / Debits";
-            this.gridView3.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView3_CustomDrawCell);
-            this.gridView3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView3_MouseDown);
-            this.gridView3.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
+            this.gridViewContacts.GridControl = this.gridControl1;
+            this.gridViewContacts.Name = "gridViewContacts";
+            this.gridViewContacts.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewContacts.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewContacts.OptionsBehavior.Editable = false;
+            this.gridViewContacts.OptionsView.ShowGroupPanel = false;
+            this.gridViewContacts.ViewCaption = "Contacts";
+            this.gridViewContacts.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView3_CustomDrawCell);
+            this.gridViewContacts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView3_MouseDown);
+            this.gridViewContacts.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
             // 
             // colDebitID
             // 
@@ -307,32 +314,24 @@
             // 
             this.colDate.FieldName = "Date";
             this.colDate.Name = "colDate";
-            this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 0;
             this.colDate.Width = 114;
             // 
             // colCredit
             // 
             this.colCredit.FieldName = "Credit";
             this.colCredit.Name = "colCredit";
-            this.colCredit.Visible = true;
-            this.colCredit.VisibleIndex = 1;
             this.colCredit.Width = 135;
             // 
             // colDebit
             // 
             this.colDebit.FieldName = "Debit";
             this.colDebit.Name = "colDebit";
-            this.colDebit.Visible = true;
-            this.colDebit.VisibleIndex = 2;
             this.colDebit.Width = 141;
             // 
             // colDetails
             // 
             this.colDetails.FieldName = "Details";
             this.colDetails.Name = "colDetails";
-            this.colDetails.Visible = true;
-            this.colDetails.VisibleIndex = 4;
             this.colDetails.Width = 490;
             // 
             // colStaffID
@@ -344,24 +343,24 @@
             // 
             this.colRunningTotal.FieldName = "RunningTotal";
             this.colRunningTotal.Name = "colRunningTotal";
-            this.colRunningTotal.Visible = true;
-            this.colRunningTotal.VisibleIndex = 3;
             this.colRunningTotal.Width = 163;
             // 
-            // gridView4
+            // gridViewDebitsCredits
             // 
-            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewDebitsCredits.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMedicationID,
             this.colMemberIDMedication,
             this.colMedicationNameID,
             this.colMedicationName});
-            this.gridView4.GridControl = this.gridControl1;
-            this.gridView4.Name = "gridView4";
-            this.gridView4.OptionsBehavior.Editable = false;
-            this.gridView4.OptionsView.ShowGroupPanel = false;
-            this.gridView4.ViewCaption = "Medications";
-            this.gridView4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView4_MouseDown);
-            this.gridView4.DoubleClick += new System.EventHandler(this.gridView4_DoubleClick);
+            this.gridViewDebitsCredits.GridControl = this.gridControl1;
+            this.gridViewDebitsCredits.Name = "gridViewDebitsCredits";
+            this.gridViewDebitsCredits.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDebitsCredits.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDebitsCredits.OptionsBehavior.Editable = false;
+            this.gridViewDebitsCredits.OptionsView.ShowGroupPanel = false;
+            this.gridViewDebitsCredits.ViewCaption = "Debit / Credits";
+            this.gridViewDebitsCredits.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView4_MouseDown);
+            this.gridViewDebitsCredits.DoubleClick += new System.EventHandler(this.gridView4_DoubleClick);
             // 
             // colMedicationID
             // 
@@ -385,27 +384,27 @@
             this.colMedicationName.Visible = true;
             this.colMedicationName.VisibleIndex = 0;
             // 
-            // gridView5
+            // gridViewMedication
             // 
-            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewMedication.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDiagnosisName,
             this.colDiagnosisID,
             this.colMemberIDDiagnosis,
             this.colDiagnosisNameID});
-            this.gridView5.GridControl = this.gridControl1;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsBehavior.Editable = false;
-            this.gridView5.OptionsView.ShowGroupPanel = false;
-            this.gridView5.ViewCaption = "Diagnosis";
-            this.gridView5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView5_MouseDown);
-            this.gridView5.DoubleClick += new System.EventHandler(this.gridView5_DoubleClick);
+            this.gridViewMedication.GridControl = this.gridControl1;
+            this.gridViewMedication.Name = "gridViewMedication";
+            this.gridViewMedication.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewMedication.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewMedication.OptionsBehavior.Editable = false;
+            this.gridViewMedication.OptionsView.ShowGroupPanel = false;
+            this.gridViewMedication.ViewCaption = "Medication";
+            this.gridViewMedication.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView5_MouseDown);
+            this.gridViewMedication.DoubleClick += new System.EventHandler(this.gridView5_DoubleClick);
             // 
             // colDiagnosisName
             // 
             this.colDiagnosisName.FieldName = "DiagnosisName";
             this.colDiagnosisName.Name = "colDiagnosisName";
-            this.colDiagnosisName.Visible = true;
-            this.colDiagnosisName.VisibleIndex = 0;
             // 
             // colDiagnosisID
             // 
@@ -422,9 +421,18 @@
             this.colDiagnosisNameID.FieldName = "DiagnosisNameID";
             this.colDiagnosisNameID.Name = "colDiagnosisNameID";
             // 
-            // gridView1
+            // gridViewDiagnosis
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridViewDiagnosis.GridControl = this.gridControl1;
+            this.gridViewDiagnosis.Name = "gridViewDiagnosis";
+            this.gridViewDiagnosis.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDiagnosis.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDiagnosis.OptionsBehavior.Editable = false;
+            this.gridViewDiagnosis.ViewCaption = "Diagnosis";
+            // 
+            // gridViewMember
+            // 
+            this.gridViewMember.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMemberID,
             this.colSurname,
             this.colFirstName,
@@ -438,16 +446,16 @@
             this.colArchived,
             this.colDateAltered,
             this.colAgency});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsFind.AlwaysVisible = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
-            this.gridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
-            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
+            this.gridViewMember.GridControl = this.gridControl1;
+            this.gridViewMember.Name = "gridViewMember";
+            this.gridViewMember.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewMember.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewMember.OptionsBehavior.Editable = false;
+            this.gridViewMember.OptionsFind.AlwaysVisible = true;
+            this.gridViewMember.OptionsView.ShowGroupPanel = false;
+            this.gridViewMember.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
+            this.gridViewMember.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
+            this.gridViewMember.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colMemberID
             // 
@@ -990,19 +998,9 @@
             // 
             this.medicationTableAdapter.ClearBeforeFill = true;
             // 
-            // diagnosisBindingSource
-            // 
-            this.diagnosisBindingSource.DataMember = "Diagnosis";
-            this.diagnosisBindingSource.DataSource = this.lorikeetAppDataSet;
-            // 
             // diagnosisTableAdapter
             // 
             this.diagnosisTableAdapter.ClearBeforeFill = true;
-            // 
-            // noteBindingSource
-            // 
-            this.noteBindingSource.DataMember = "Note";
-            this.noteBindingSource.DataSource = this.lorikeetAppDataSet;
             // 
             // noteTableAdapter
             // 
@@ -1028,14 +1026,15 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewNotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memberBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lorikeetAppDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewContacts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDebitsCredits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMedication)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDiagnosis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMember)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenuAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).EndInit();
@@ -1094,7 +1093,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemImportDatabase;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMember;
         private DevExpress.XtraGrid.Columns.GridColumn colMemberID;
         private DevExpress.XtraGrid.Columns.GridColumn colSurname;
         private DevExpress.XtraGrid.Columns.GridColumn colFirstName;
@@ -1108,10 +1107,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colArchived;
         private DevExpress.XtraGrid.Columns.GridColumn colDateAltered;
         private DevExpress.XtraGrid.Columns.GridColumn colAgency;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewNotes;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewContacts;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewDebitsCredits;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMedication;
         private DevExpress.XtraGrid.Columns.GridColumn colContactID;
         private DevExpress.XtraGrid.Columns.GridColumn colMemberIDContact;
         private DevExpress.XtraGrid.Columns.GridColumn colContactType;
@@ -1161,6 +1160,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.BarButtonItem bbiUsers;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewDiagnosis;
     }
 }
 

@@ -306,6 +306,7 @@
             // lorikeetAppDataSet
             // 
             this.lorikeetAppDataSet.DataSetName = "LorikeetAppDataSet";
+            this.lorikeetAppDataSet.EnforceConstraints = false;
             this.lorikeetAppDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // firstNameTextEdit
@@ -895,6 +896,7 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.AppointmentMemberTableAdapter = null;
+            this.tableAdapterManager.AppointmentsNumbersTableAdapter = null;
             this.tableAdapterManager.AppointmentsTableAdapter = null;
             this.tableAdapterManager.AttendanceNumbersTableAdapter = null;
             this.tableAdapterManager.AttendanceTableAdapter = null;
@@ -902,14 +904,18 @@
             this.tableAdapterManager.ContactTableAdapter = null;
             this.tableAdapterManager.DebitSystemTableAdapter = null;
             this.tableAdapterManager.DiagnosisNameTableAdapter = null;
+            this.tableAdapterManager.DiagnosisTableAdapter = null;
+            this.tableAdapterManager.GeocodeCacheTableAdapter = null;
             this.tableAdapterManager.GuestTableAdapter = null;
             this.tableAdapterManager.LabelsTableAdapter = null;
             this.tableAdapterManager.LoginTableAdapter = null;
             this.tableAdapterManager.LogTableAdapter = null;
             this.tableAdapterManager.LunchTableAdapter = null;
             this.tableAdapterManager.MedicationNameTableAdapter = null;
+            this.tableAdapterManager.MedicationTableAdapter = null;
             this.tableAdapterManager.MemberTableAdapter = this.memberTableAdapter;
             this.tableAdapterManager.MenuTableAdapter = null;
+            this.tableAdapterManager.NoteTableAdapter = null;
             this.tableAdapterManager.PictureTableAdapter = null;
             this.tableAdapterManager.ResourcesTableAdapter = null;
             this.tableAdapterManager.SignInTableAdapter = null;

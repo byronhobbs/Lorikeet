@@ -91,13 +91,6 @@ CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
 
 --
--- Create foreign key
---
-ALTER TABLE Lunch
-ADD CONSTRAINT FK_Lunch_Staff FOREIGN KEY (StaffID)
-REFERENCES Staff (StaffID) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Create table `DebitSystem`
 --
 CREATE TABLE DebitSystem (
@@ -114,20 +107,6 @@ CREATE TABLE DebitSystem (
 ENGINE = INNODB,
 CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
-
---
--- Create foreign key
---
-ALTER TABLE DebitSystem
-ADD CONSTRAINT FK_DebitSystem_Member FOREIGN KEY (MemberID)
-REFERENCES Member (MemberID) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Create foreign key
---
-ALTER TABLE DebitSystem
-ADD CONSTRAINT FK_DebitSystem_Staff FOREIGN KEY (StaffID)
-REFERENCES Staff (StaffID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Create table `Guest`
@@ -160,20 +139,6 @@ CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
 
 --
--- Create foreign key
---
-ALTER TABLE SignIn
-ADD CONSTRAINT FK_SignIn_Guest FOREIGN KEY (GuestID)
-REFERENCES Guest (GuestID) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Create foreign key
---
-ALTER TABLE SignIn
-ADD CONSTRAINT FK_SignIn_Member FOREIGN KEY (MemberID)
-REFERENCES Member (MemberID) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Create table `Resources`
 --
 CREATE TABLE Resources (
@@ -204,13 +169,6 @@ CREATE TABLE Picture (
 ENGINE = INNODB,
 CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
-
---
--- Create foreign key
---
-ALTER TABLE Picture
-ADD CONSTRAINT FK_Picture_Member FOREIGN KEY (MemberID)
-REFERENCES Member (MemberID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Create table `Note`
@@ -265,13 +223,6 @@ CREATE TABLE Medication (
 ENGINE = INNODB,
 CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
-
---
--- Create foreign key
---
-ALTER TABLE Medication
-ADD CONSTRAINT FK_Medication_Member FOREIGN KEY (MemberID)
-REFERENCES Member (MemberID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Create table `Log`
@@ -332,13 +283,6 @@ CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
 
 --
--- Create foreign key
---
-ALTER TABLE Diagnosis
-ADD CONSTRAINT FK_Diagnosis_Member FOREIGN KEY (MemberID)
-REFERENCES Member (MemberID) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Create table `Contact`
 --
 CREATE TABLE Contact (
@@ -353,13 +297,6 @@ CREATE TABLE Contact (
 ENGINE = INNODB,
 CHARACTER SET latin1,
 COLLATE latin1_swedish_ci;
-
---
--- Create foreign key
---
-ALTER TABLE Contact
-ADD CONSTRAINT FK_Contact_Member FOREIGN KEY (MemberID)
-REFERENCES Member (MemberID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Create table `AttendanceNumbers`

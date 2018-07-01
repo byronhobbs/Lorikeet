@@ -62,8 +62,10 @@ namespace Lorikeet
         {
             var form = new FormEditMemberID(memberID, staffID);
             form.ShowDialog();
-
-            this.memberTableAdapter.FillByMemberID(this.lorikeetAppDataSet.Member, form.newMemberID);
+            if (form.newMemberID != -1)
+            {
+                this.memberTableAdapter.FillByMemberID(this.lorikeetAppDataSet.Member, form.newMemberID);
+            }
         }
 
         private void simpleButtonMap_Click(object sender, EventArgs e)

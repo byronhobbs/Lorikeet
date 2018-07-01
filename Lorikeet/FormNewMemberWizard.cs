@@ -438,17 +438,21 @@ namespace Lorikeet
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            counter++;
-            if (counter == 2)
+            try
             {
-                timer1.Stop();
-                _isTimerRunning = false;
-                counter = 0;
+                counter++;
+                if (counter == 2)
+                {
+                    timer1.Stop();
+                    _isTimerRunning = false;
+                    counter = 0;
 
-                mapHoverForm.addressChosen = mleAddress.Text;
-                DialogResult dr = mapHoverForm.ShowDialog();
-                AddressChange(dr, mapHoverForm.addressChosen);
+                    mapHoverForm.addressChosen = mleAddress.Text;
+                    DialogResult dr = mapHoverForm.ShowDialog();
+                    AddressChange(dr, mapHoverForm.addressChosen);
+                }
             }
+            catch { }
         }
 
         private void mapControl1_Click(object sender, EventArgs e)

@@ -72,15 +72,15 @@ namespace Lorikeet {
         
         private StaffDataTable tableStaff;
         
-        private global::System.Data.DataRelation relationMember_Note;
+        private global::System.Data.DataRelation relationContact_Member;
+        
+        private global::System.Data.DataRelation relationDebitSystem_Member;
         
         private global::System.Data.DataRelation relationMedication_Member;
         
         private global::System.Data.DataRelation relationDiagnosis_Member;
         
-        private global::System.Data.DataRelation relationContact_Member;
-        
-        private global::System.Data.DataRelation relationDebitSystem_Member;
+        private global::System.Data.DataRelation relationMember_Note;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -756,11 +756,11 @@ namespace Lorikeet {
                     this.tableStaff.InitVars();
                 }
             }
-            this.relationMember_Note = this.Relations["Member_Note"];
-            this.relationMedication_Member = this.Relations["Medication_Member"];
-            this.relationDiagnosis_Member = this.Relations["Diagnosis_Member"];
             this.relationContact_Member = this.Relations["Contact_Member"];
             this.relationDebitSystem_Member = this.Relations["DebitSystem_Member"];
+            this.relationMedication_Member = this.Relations["Medication_Member"];
+            this.relationDiagnosis_Member = this.Relations["Diagnosis_Member"];
+            this.relationMember_Note = this.Relations["Member_Note"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -819,18 +819,42 @@ namespace Lorikeet {
             base.Tables.Add(this.tableSignIn);
             this.tableStaff = new StaffDataTable();
             base.Tables.Add(this.tableStaff);
-            this.relationMember_Note = new global::System.Data.DataRelation("Member_Note", new global::System.Data.DataColumn[] {
-                        this.tableMember.MemberIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableNote.MemberIDColumn}, false);
-            this.Relations.Add(this.relationMember_Note);
-            this.relationMedication_Member = new global::System.Data.DataRelation("Medication_Member", new global::System.Data.DataColumn[] {
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("Contact_Member", new global::System.Data.DataColumn[] {
+                        this.tableContact.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn});
+            this.tableMember.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("DebitSystem_Member", new global::System.Data.DataColumn[] {
+                        this.tableDebitSystem.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn});
+            this.tableMember.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("Medication_Member", new global::System.Data.DataColumn[] {
                         this.tableMedication.MemberIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableMember.MemberIDColumn}, false);
-            this.Relations.Add(this.relationMedication_Member);
-            this.relationDiagnosis_Member = new global::System.Data.DataRelation("Diagnosis_Member", new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn});
+            this.tableMember.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("Diagnosis_Member", new global::System.Data.DataColumn[] {
                         this.tableDiagnosis.MemberIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableMember.MemberIDColumn}, false);
-            this.Relations.Add(this.relationDiagnosis_Member);
+                        this.tableMember.MemberIDColumn});
+            this.tableMember.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("Member_Note", new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableNote.MemberIDColumn});
+            this.tableNote.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationContact_Member = new global::System.Data.DataRelation("Contact_Member", new global::System.Data.DataColumn[] {
                         this.tableContact.MemberIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableMember.MemberIDColumn}, false);
@@ -839,6 +863,18 @@ namespace Lorikeet {
                         this.tableDebitSystem.MemberIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableMember.MemberIDColumn}, false);
             this.Relations.Add(this.relationDebitSystem_Member);
+            this.relationMedication_Member = new global::System.Data.DataRelation("Medication_Member", new global::System.Data.DataColumn[] {
+                        this.tableMedication.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, false);
+            this.Relations.Add(this.relationMedication_Member);
+            this.relationDiagnosis_Member = new global::System.Data.DataRelation("Diagnosis_Member", new global::System.Data.DataColumn[] {
+                        this.tableDiagnosis.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, false);
+            this.Relations.Add(this.relationDiagnosis_Member);
+            this.relationMember_Note = new global::System.Data.DataRelation("Member_Note", new global::System.Data.DataColumn[] {
+                        this.tableMember.MemberIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableNote.MemberIDColumn}, false);
+            this.Relations.Add(this.relationMember_Note);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2956,12 +2992,15 @@ namespace Lorikeet {
                 base.Columns.Add(this.columnMemberID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnContactID}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnMemberID}, false));
                 this.columnContactID.AutoIncrement = true;
                 this.columnContactID.AutoIncrementSeed = -1;
                 this.columnContactID.AutoIncrementStep = -1;
                 this.columnContactID.AllowDBNull = false;
                 this.columnContactID.Unique = true;
                 this.columnMemberID.AllowDBNull = false;
+                this.columnMemberID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3316,6 +3355,8 @@ namespace Lorikeet {
                 base.Columns.Add(this.columnStaffID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnDebitID}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnMemberID}, false));
                 this.columnDebitID.AutoIncrement = true;
                 this.columnDebitID.AutoIncrementSeed = -1;
                 this.columnDebitID.AutoIncrementStep = -1;
@@ -3323,6 +3364,7 @@ namespace Lorikeet {
                 this.columnDebitID.Unique = true;
                 this.columnDate.AllowDBNull = false;
                 this.columnMemberID.AllowDBNull = false;
+                this.columnMemberID.Unique = true;
                 this.columnStaffID.AllowDBNull = false;
             }
             
@@ -3608,6 +3650,8 @@ namespace Lorikeet {
                 base.Columns.Add(this.columnMemberID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnDiagnosisID}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnMemberID}, false));
                 this.columnDiagnosisID.AutoIncrement = true;
                 this.columnDiagnosisID.AutoIncrementSeed = -1;
                 this.columnDiagnosisID.AutoIncrementStep = -1;
@@ -3615,6 +3659,7 @@ namespace Lorikeet {
                 this.columnDiagnosisID.Unique = true;
                 this.columnDiagnosisNameID.AllowDBNull = false;
                 this.columnMemberID.AllowDBNull = false;
+                this.columnMemberID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6089,6 +6134,8 @@ namespace Lorikeet {
                 base.Columns.Add(this.columnMemberID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMedicationID}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnMemberID}, false));
                 this.columnMedicationID.AutoIncrement = true;
                 this.columnMedicationID.AutoIncrementSeed = -1;
                 this.columnMedicationID.AutoIncrementStep = -1;
@@ -6096,6 +6143,7 @@ namespace Lorikeet {
                 this.columnMedicationID.Unique = true;
                 this.columnMedicationNameID.AllowDBNull = false;
                 this.columnMemberID.AllowDBNull = false;
+                this.columnMemberID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6836,7 +6884,7 @@ namespace Lorikeet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public MemberRow AddMemberRow(
-                        MedicationRow parentMedicationRowByMedication_Member, 
+                        ContactRow parentContactRowByContact_Member, 
                         bool Aboriginal, 
                         bool Agency, 
                         bool Archived, 
@@ -6890,8 +6938,8 @@ namespace Lorikeet {
                         Volunteering,
                         Working,
                         ReturnToSender};
-                if ((parentMedicationRowByMedication_Member != null)) {
-                    columnValuesArray[0] = parentMedicationRowByMedication_Member[2];
+                if ((parentContactRowByContact_Member != null)) {
+                    columnValuesArray[0] = parentContactRowByContact_Member[5];
                 }
                 rowMemberRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMemberRow);
@@ -11376,28 +11424,6 @@ namespace Lorikeet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public MedicationRow MedicationRow {
-                get {
-                    return ((MedicationRow)(this.GetParentRow(this.Table.ParentRelations["Medication_Member"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Medication_Member"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DiagnosisRow DiagnosisRow {
-                get {
-                    return ((DiagnosisRow)(this.GetParentRow(this.Table.ParentRelations["Diagnosis_Member"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Diagnosis_Member"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ContactRow ContactRow {
                 get {
                     return ((ContactRow)(this.GetParentRow(this.Table.ParentRelations["Contact_Member"])));
@@ -11415,6 +11441,28 @@ namespace Lorikeet {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["DebitSystem_Member"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MedicationRow MedicationRow {
+                get {
+                    return ((MedicationRow)(this.GetParentRow(this.Table.ParentRelations["Medication_Member"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Medication_Member"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public DiagnosisRow DiagnosisRow {
+                get {
+                    return ((DiagnosisRow)(this.GetParentRow(this.Table.ParentRelations["Diagnosis_Member"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Diagnosis_Member"]);
                 }
             }
             
@@ -23878,7 +23926,7 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::Devart.Data.MySql.MySqlCommand[2];
+            this._commandCollection = new global::Devart.Data.MySql.MySqlCommand[3];
             this._commandCollection[0] = new global::Devart.Data.MySql.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT MemberID, Aboriginal, Agency, Archived, BirthdayCard, Country, CountryOfOrigin, DateAltered, DateJoined, DateOfBirth, EmailAddress, FirstName, MobileNumber, PostCode, ReceiveByMail, ReceiveNewsletter, Sex, State, StreetAddress, Studying, Suburb, Surname, TelephoneNumber, Volunteering, Working, ReturnToSender FROM LorikeetApp.Member";
@@ -23894,6 +23942,17 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "MemberID";
             this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2] = new global::Devart.Data.MySql.MySqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "UPDATE       Member\r\nSET                MemberID = :MemberID";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            param = new global::Devart.Data.MySql.MySqlParameter();
+            param.ParameterName = "MemberID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlType = global::Devart.Data.MySql.MySqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "MemberID";
+            this._commandCollection[2].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24895,6 +24954,30 @@ namespace Lorikeet.LorikeetAppDataSetTableAdapters {
                     global::System.Nullable<short> Original_Working, 
                     global::System.Nullable<short> Original_ReturnToSender) {
             return this.Update(Original_MemberID, Aboriginal, Agency, Archived, BirthdayCard, Country, CountryOfOrigin, DateAltered, DateJoined, DateOfBirth, EmailAddress, FirstName, MobileNumber, PostCode, ReceiveByMail, ReceiveNewsletter, Sex, State, StreetAddress, Studying, Suburb, Surname, TelephoneNumber, Volunteering, Working, ReturnToSender, Original_MemberID, Original_Aboriginal, Original_Agency, Original_Archived, Original_BirthdayCard, Original_Country, Original_CountryOfOrigin, Original_DateAltered, Original_DateJoined, Original_DateOfBirth, Original_EmailAddress, Original_FirstName, Original_MobileNumber, Original_PostCode, Original_ReceiveByMail, Original_ReceiveNewsletter, Original_Sex, Original_State, Original_StreetAddress, Original_Studying, Original_Suburb, Original_Surname, Original_TelephoneNumber, Original_Volunteering, Original_Working, Original_ReturnToSender);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateMemberIDQuery(int MemberID) {
+            global::Devart.Data.MySql.MySqlCommand command = this.CommandCollection[2];
+            command.Parameters[0].Value = ((int)(MemberID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
